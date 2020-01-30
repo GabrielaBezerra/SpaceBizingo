@@ -26,12 +26,16 @@ class GameScene: SKScene {
     }
     
     private func setupBoard() {
+        
         self.board = Board(amountOfRows: 8, scale: 43, yOrigin: 303)
-        board.rows.forEach { row in
+        
+        board.rowsNodes.forEach { row in
             row.forEach { triangle in
                 self.addChild(triangle)
             }
         }
+        
+        board.rowsData.first?.first?.setRed()
     }
     
     func touchDown(atPoint pos : CGPoint) {

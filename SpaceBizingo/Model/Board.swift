@@ -15,6 +15,7 @@ import SpriteKit
  
         - Triangle
             - position (x,y)
+            - reversed 
             - isEmpty -> Bool
             - hasRed -> Bool
             - hasBlue -> Bool
@@ -33,7 +34,8 @@ import SpriteKit
 
 class Board {
     
-    var rows : [[SKShapeNode]] = []
+    var rowsNodes : [[SKShapeNode]] = []
+    var rowsData: [[TriangleData]] = []
     
     private let scale: CGFloat
     private let yOrigin: CGFloat
@@ -47,11 +49,14 @@ class Board {
     }
     
     func drawBoard(numberOfRows: Int) {
+        
         let maxElementsInRow = (numberOfRows-1 * 2) + numberOfRows + 2
+        
         var elementCounter = 3
         for row in 0...numberOfRows-1 {
             
-            self.rows.append([])
+            self.rowsNodes.append([])
+            self.rowsData.append([])
             
             if elementCounter <= maxElementsInRow {
                 elementCounter += 2
@@ -66,17 +71,22 @@ class Board {
         }
     }
     
-    func drawRow(number i: Int, amountOfElements e: Int, backoff: Int, beginsWithReversed reversed: Bool = false) {
+    func drawRow(number i: Int, amountOfElements e: Int, backoff: Int, beginsWithReversed: Bool = false) {
         let xVar: Int = (e-backoff-3) * Int(-scale)
         for j in 0...e-1 {
-            let condition: Bool = reversed ? j % 2 == 0 : j % 2 != 0
-            let triangle = SKShapeNode.triangle(reversed: condition,
+            
+            let condition: Bool = beginsWithReversed ? j % 2 == 0 : j % 2 != 0
+            
+            let triangleNode = SKShapeNode.triangle(reversed: condition,
                                                 xoffset: CGFloat(j * Int(scale) + xVar),
                                                 yoffset: CGFloat(i * Int(-scale) * 2),
                                                 yOrigin: yOrigin,
                                                 scale: scale)
             
-            self.rows[i].append(triangle)
+            let triangleData = TriangleData(position: Index(x: i, y: j), reversed: condition)
+            
+            self.rowsNodes[i].append(triangleNode)
+            self.rowsData[i].append(triangleData)
         }
     }
     

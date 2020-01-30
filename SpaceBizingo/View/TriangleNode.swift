@@ -8,8 +8,18 @@
 
 import Foundation
 import SpriteKit
+import UIKit
+
+let reversedColor: UIColor = .systemIndigo
 
 extension SKShapeNode {
+    
+    var reversed: Bool {
+        get {
+            return (self.fillColor.description == UIColor(cgColor: reversedColor.cgColor).description)
+
+        }
+    }
     
     static func triangle(reversed: Bool = false,
                          multiplier: CGFloat = 1.0,
@@ -17,6 +27,8 @@ extension SKShapeNode {
                          yoffset: CGFloat = 0.0,
                          yOrigin: CGFloat,
                          scale: CGFloat) -> SKShapeNode {
+        
+        let fillColor: UIColor = reversed ? reversedColor : .white
         
         let path = UIBezierPath()
         
@@ -46,7 +58,7 @@ extension SKShapeNode {
         
         let triangle = self.init(path: path.cgPath)
         triangle.lineWidth = 0
-        triangle.fillColor = reversed ? .systemIndigo : .white
+        triangle.fillColor = fillColor
         
         return triangle
         

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0663A90423E30456007805C4 /* TriangleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90323E30456007805C4 /* TriangleData.swift */; };
+		0663A90623E30478007805C4 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90523E30478007805C4 /* Index.swift */; };
 		06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78623E2705A00CD2013 /* AppDelegate.swift */; };
 		06EFF78923E2705A00CD2013 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78823E2705A00CD2013 /* GameScene.sks */; };
 		06EFF78B23E2705A00CD2013 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78A23E2705A00CD2013 /* Actions.sks */; };
@@ -18,7 +20,7 @@
 		06EFF7A223E2705D00CD2013 /* SpaceBizingoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7A123E2705D00CD2013 /* SpaceBizingoTests.swift */; };
 		06EFF7AD23E2705D00CD2013 /* SpaceBizingoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7AC23E2705D00CD2013 /* SpaceBizingoUITests.swift */; };
 		06EFF7BB23E2A3A400CD2013 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BA23E2A3A400CD2013 /* Board.swift */; };
-		06EFF7BD23E2A3AF00CD2013 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BC23E2A3AF00CD2013 /* Triangle.swift */; };
+		06EFF7BD23E2A3AF00CD2013 /* TriangleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0663A90323E30456007805C4 /* TriangleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleData.swift; sourceTree = "<group>"; };
+		0663A90523E30478007805C4 /* Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
 		06EFF78323E2705A00CD2013 /* SpaceBizingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceBizingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06EFF78623E2705A00CD2013 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06EFF78823E2705A00CD2013 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -56,7 +60,7 @@
 		06EFF7AC23E2705D00CD2013 /* SpaceBizingoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceBizingoUITests.swift; sourceTree = "<group>"; };
 		06EFF7AE23E2705D00CD2013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06EFF7BA23E2A3A400CD2013 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		06EFF7BC23E2A3AF00CD2013 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0663A90723E31E55007805C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				06EFF7BA23E2A3A400CD2013 /* Board.swift */,
+				0663A90523E30478007805C4 /* Index.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0663A90823E31E74007805C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		06EFF77A23E2705A00CD2013 = {
 			isa = PBXGroup;
 			children = (
@@ -107,10 +128,12 @@
 		06EFF78523E2705A00CD2013 /* SpaceBizingo */ = {
 			isa = PBXGroup;
 			children = (
+				0663A90823E31E74007805C4 /* View */,
+				0663A90723E31E55007805C4 /* Model */,
 				06EFF78623E2705A00CD2013 /* AppDelegate.swift */,
 				06EFF78823E2705A00CD2013 /* GameScene.sks */,
 				06EFF78A23E2705A00CD2013 /* Actions.sks */,
-				06EFF7BE23E2A3EB00CD2013 /* Model */,
+				06EFF7BE23E2A3EB00CD2013 /* Entitiy */,
 				06EFF78C23E2705A00CD2013 /* GameScene.swift */,
 				06EFF78E23E2705A00CD2013 /* GameViewController.swift */,
 				06EFF79023E2705A00CD2013 /* Main.storyboard */,
@@ -139,13 +162,12 @@
 			path = SpaceBizingoUITests;
 			sourceTree = "<group>";
 		};
-		06EFF7BE23E2A3EB00CD2013 /* Model */ = {
+		06EFF7BE23E2A3EB00CD2013 /* Entitiy */ = {
 			isa = PBXGroup;
 			children = (
-				06EFF7BC23E2A3AF00CD2013 /* Triangle.swift */,
-				06EFF7BA23E2A3A400CD2013 /* Board.swift */,
+				0663A90323E30456007805C4 /* TriangleData.swift */,
 			);
-			path = Model;
+			path = Entitiy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,8 +304,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				06EFF78D23E2705A00CD2013 /* GameScene.swift in Sources */,
+				0663A90623E30478007805C4 /* Index.swift in Sources */,
 				06EFF78F23E2705A00CD2013 /* GameViewController.swift in Sources */,
-				06EFF7BD23E2A3AF00CD2013 /* Triangle.swift in Sources */,
+				06EFF7BD23E2A3AF00CD2013 /* TriangleNode.swift in Sources */,
+				0663A90423E30456007805C4 /* TriangleData.swift in Sources */,
 				06EFF7BB23E2A3A400CD2013 /* Board.swift in Sources */,
 				06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */,
 			);
