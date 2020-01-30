@@ -27,7 +27,7 @@ class GameScene: SKScene {
     
     private func setupBoard() {
         
-        self.board = Board(amountOfRows: 8, scale: 43, yOrigin: 303)
+        self.board = Board(amountOfRows: 11, scale: 33, yOrigin: 333)
         
         board.rowsNodes.forEach { row in
             row.forEach { triangle in
@@ -36,6 +36,21 @@ class GameScene: SKScene {
         }
         
         board.rowsData.first?.first?.setRed()
+    }
+    
+    private func paintTriangle(at points: [CGPoint], mutualExclusive: Bool = true) {
+        points.forEach { point in
+            board.rowsNodes.enumerated().forEach { indexRow, row in
+                row.enumerated().forEach { indexColumn, triangle in
+                    if triangle.contains(point) {
+                        triangle.fillColor = .red
+                    } else if mutualExclusive {
+                        let reversed: Bool = board.rowsData[indexRow][indexColumn].reversed
+                        triangle.fillColor = reversed ? .systemIndigo : .white
+                    }
+                }
+            }
+        }
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -55,8 +70,12 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        paintTriangle(at: touches.compactMap { $0.location(in: self) })
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
