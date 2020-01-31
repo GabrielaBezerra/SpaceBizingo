@@ -46,7 +46,7 @@ class GameScene: SKScene {
                         triangle.fillColor = .red
                     } else if mutualExclusive {
                         let reversed: Bool = board.rowsData[indexRow][indexColumn].reversed
-                        triangle.fillColor = reversed ? .systemIndigo : .white
+                        triangle.fillColor = reversed ? .systemIndigo : .systemTeal
                     }
                 }
             }

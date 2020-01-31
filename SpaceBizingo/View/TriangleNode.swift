@@ -28,7 +28,7 @@ extension SKShapeNode {
                          yOrigin: CGFloat,
                          scale: CGFloat) -> SKShapeNode {
         
-        let fillColor: UIColor = reversed ? reversedColor : .white
+        let fillColor: UIColor = reversed ? reversedColor : .systemTeal
         
         let path = UIBezierPath()
         

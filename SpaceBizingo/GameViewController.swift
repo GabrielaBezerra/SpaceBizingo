@@ -15,10 +15,37 @@ class GameViewController: UIViewController {
     @IBOutlet weak var skView: SKView!
     
     @IBOutlet weak var chatTextView: UITextView!
+    
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var optionsButton: UIButton!
     
     @IBAction func sendAction(_ sender: UIButton) {
+    }
+    
+    @IBAction func optionsAction(_ sender: Any) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let resignAction = UIAlertAction(title: "Resign", style: .destructive, handler: { (alert) in
+            //resign handler
+        })
+        
+        let endTurnAction = UIAlertAction(title: "End Turn", style: .default, handler: { (alert) in
+            //endTurn handler
+        })
+        
+        let restartAction = UIAlertAction(title: "Request Restart Match", style: .destructive, handler: { (alert) in
+            //restart handler
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(endTurnAction)
+        actionSheet.addAction(restartAction)
+        actionSheet.addAction(resignAction)
+        actionSheet.addAction(cancelAction)
+        
+        self.present(actionSheet, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -34,6 +61,8 @@ class GameViewController: UIViewController {
             
             // Get the SKScene from the loaded GKScene
             if let sceneNode = scene.rootNode as! GameScene? {
+                
+                sceneNode.backgroundColor = self.view.backgroundColor!
                 
                 // Copy gameplay related content over to the scene
                 sceneNode.entities = scene.entities
