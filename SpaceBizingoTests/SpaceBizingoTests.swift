@@ -69,7 +69,7 @@ class SpaceBizingoTests: XCTestCase {
     }
     
     func testAnatomyOfTriangles(node: SKShapeNode, data: TriangleData) {
-        XCTAssertEqual(node.reversed, data.reversed)
+        XCTAssertEqual(node.reversed, data.opponent)
     }
     
     func testTriangleInitialEmptyState(data: TriangleData) {

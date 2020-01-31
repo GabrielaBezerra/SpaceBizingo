@@ -35,20 +35,44 @@ import SpriteKit
 class Board {
     
     var rowsNodes : [[SKShapeNode]] = []
-    var rowsData: [[TriangleData]] = []
+    private var rowsData: [[TriangleData]] = []
     
-    private let scale: CGFloat
-    private let yOrigin: CGFloat
-    
-    init(amountOfRows x: Int, scale: CGFloat, yOrigin: CGFloat) {
-        
-        self.scale = scale
-        self.yOrigin = yOrigin
-        
-        drawBoard(numberOfRows: x)
+    func triangleDatas(of type: TriangleType) -> [[TriangleData]] {
+        return rowsData.compactMap { row in row.filter{ $0.type == type } }
     }
     
-    func drawBoard(numberOfRows: Int) {
+    private let scale: CGFloat
+    private let originY: CGFloat
+    
+    init(amountOfRows x: Int, scale: CGFloat, originY: CGFloat, _ handler: ([SKShapeNode]) -> Void) {
+        
+        self.scale = scale
+        self.originY = originY
+        
+        setup(numberOfRows: x)
+        
+        let nodes = rowsNodes.flatMap{ $0 }
+        handler(nodes)
+    }
+    
+    private func placePieces() {
+        let playerTopTriangleDatas = triangleDatas(of: .pointTop)
+        let playerBottomTriangleDatas = triangleDatas(of: .pointBottom)
+        
+        for i in 1...6 {
+            playerTopTriangleDatas[5][i].setPiece()
+        }
+        
+        for i in 1...7 {
+            playerBottomTriangleDatas[7][i].setPiece()
+        }
+        
+        for i in 1...7 {
+            playerBottomTriangleDatas[7][i].setPiece()
+        }
+    }
+    
+    func setup(numberOfRows: Int) {
         
         let maxElementsInRow = (numberOfRows-1 * 2) + numberOfRows + 2
         
@@ -62,16 +86,16 @@ class Board {
                 elementCounter += 2
             }
             if (row == numberOfRows-2) {
-                drawRow(number: row, amountOfElements: elementCounter-2, backoff: row-1, beginsWithReversed: true)
+                createRow(number: row, amountOfElements: elementCounter-2, backoff: row-1, beginsWithReversed: true)
             } else if (row == numberOfRows-1) {
-                drawRow(number: row, amountOfElements: elementCounter-4, backoff: row-3, beginsWithReversed: true)
+                createRow(number: row, amountOfElements: elementCounter-4, backoff: row-3, beginsWithReversed: true)
             } else {
-                drawRow(number: row, amountOfElements: elementCounter, backoff: row)
+                createRow(number: row, amountOfElements: elementCounter, backoff: row)
             }
         }
     }
     
-    func drawRow(number i: Int, amountOfElements e: Int, backoff: Int, beginsWithReversed: Bool = false) {
+    func createRow(number i: Int, amountOfElements e: Int, backoff: Int, beginsWithReversed: Bool = false) {
         let xVar: Int = (e-backoff-3) * Int(-scale)
         for j in 0...e-1 {
             
@@ -80,14 +104,28 @@ class Board {
             let triangleNode = SKShapeNode.triangle(reversed: condition,
                                                 xoffset: CGFloat(j * Int(scale) + xVar),
                                                 yoffset: CGFloat(i * Int(-scale) * 2),
-                                                yOrigin: yOrigin,
+                                                yOrigin: originY,
                                                 scale: scale)
             
-            let triangleData = TriangleData(position: Index(x: i, y: j), reversed: condition)
+            let type: TriangleType = condition ? .pointBottom : .pointTop
+            let triangleData = TriangleData(position: Index(x: i, y: j), type: type) {
+                [weak triangleNode] color in
+                triangleNode?.fillColor = color
+            }
             
             self.rowsNodes[i].append(triangleNode)
             self.rowsData[i].append(triangleData)
         }
+    }
+    
+    func getTriangle(atScreenPoint point: CGPoint) -> TriangleData? {
+        for (indexRow, row) in rowsNodes.enumerated() {
+            for (indexColumn, triangleNode) in row.enumerated() {
+                let triangleData = rowsData[indexRow][indexColumn]
+                if triangleNode.contains(point) { return triangleData }
+            }
+        }
+        return nil
     }
     
 }

@@ -10,13 +10,11 @@ import Foundation
 import SpriteKit
 import UIKit
 
-let reversedColor: UIColor = .systemIndigo
-
 extension SKShapeNode {
     
     var reversed: Bool {
         get {
-            return (self.fillColor.description == UIColor(cgColor: reversedColor.cgColor).description)
+            return (self.fillColor.description == UIColor(cgColor: Colors.trianglePointDown.color.cgColor).description)
 
         }
     }
@@ -28,7 +26,7 @@ extension SKShapeNode {
                          yOrigin: CGFloat,
                          scale: CGFloat) -> SKShapeNode {
         
-        let fillColor: UIColor = reversed ? reversedColor : .systemTeal
+        let fillColor: UIColor = reversed ? Colors.trianglePointDown.color : Colors.trianglePointUp.color
         
         let path = UIBezierPath()
         

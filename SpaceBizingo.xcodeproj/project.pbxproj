@@ -21,6 +21,7 @@
 		06EFF7AD23E2705D00CD2013 /* SpaceBizingoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7AC23E2705D00CD2013 /* SpaceBizingoUITests.swift */; };
 		06EFF7BB23E2A3A400CD2013 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BA23E2A3A400CD2013 /* Board.swift */; };
 		06EFF7BD23E2A3AF00CD2013 /* TriangleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */; };
+		06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BF23E4B98D00CD2013 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		06EFF7AE23E2705D00CD2013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06EFF7BA23E2A3A400CD2013 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleNode.swift; sourceTree = "<group>"; };
+		06EFF7BF23E4B98D00CD2013 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +93,11 @@
 		0663A90723E31E55007805C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				06EFF7BF23E4B98D00CD2013 /* Constants.swift */,
 				06EFF7BA23E2A3A400CD2013 /* Board.swift */,
 				0663A90523E30478007805C4 /* Index.swift */,
+				06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */,
+				0663A90323E30456007805C4 /* TriangleData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,7 +105,11 @@
 		0663A90823E31E74007805C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */,
+				06EFF78823E2705A00CD2013 /* GameScene.sks */,
+				06EFF78A23E2705A00CD2013 /* Actions.sks */,
+				06EFF79023E2705A00CD2013 /* Main.storyboard */,
+				06EFF79323E2705C00CD2013 /* Assets.xcassets */,
+				06EFF79523E2705C00CD2013 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -131,14 +140,8 @@
 				0663A90823E31E74007805C4 /* View */,
 				0663A90723E31E55007805C4 /* Model */,
 				06EFF78623E2705A00CD2013 /* AppDelegate.swift */,
-				06EFF78823E2705A00CD2013 /* GameScene.sks */,
-				06EFF78A23E2705A00CD2013 /* Actions.sks */,
-				06EFF7BE23E2A3EB00CD2013 /* Entitiy */,
 				06EFF78C23E2705A00CD2013 /* GameScene.swift */,
 				06EFF78E23E2705A00CD2013 /* GameViewController.swift */,
-				06EFF79023E2705A00CD2013 /* Main.storyboard */,
-				06EFF79323E2705C00CD2013 /* Assets.xcassets */,
-				06EFF79523E2705C00CD2013 /* LaunchScreen.storyboard */,
 				06EFF79823E2705C00CD2013 /* Info.plist */,
 			);
 			path = SpaceBizingo;
@@ -160,14 +163,6 @@
 				06EFF7AE23E2705D00CD2013 /* Info.plist */,
 			);
 			path = SpaceBizingoUITests;
-			sourceTree = "<group>";
-		};
-		06EFF7BE23E2A3EB00CD2013 /* Entitiy */ = {
-			isa = PBXGroup;
-			children = (
-				0663A90323E30456007805C4 /* TriangleData.swift */,
-			);
-			path = Entitiy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +303,7 @@
 				06EFF78F23E2705A00CD2013 /* GameViewController.swift in Sources */,
 				06EFF7BD23E2A3AF00CD2013 /* TriangleNode.swift in Sources */,
 				0663A90423E30456007805C4 /* TriangleData.swift in Sources */,
+				06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */,
 				06EFF7BB23E2A3A400CD2013 /* Board.swift in Sources */,
 				06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */,
 			);

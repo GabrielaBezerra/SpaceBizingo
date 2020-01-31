@@ -19,54 +19,19 @@ class GameScene: SKScene {
     private var board: Board!
     
     override func sceneDidLoad() {
-
         self.lastUpdateTime = 0
         
-        setupBoard()
-    }
-    
-    private func setupBoard() {
-        
-        self.board = Board(amountOfRows: 11, scale: 33, yOrigin: 333)
-        
-        board.rowsNodes.forEach { row in
-            row.forEach { triangle in
-                self.addChild(triangle)
-            }
-        }
-        
-        board.rowsData.first?.first?.setRed()
-    }
-    
-    private func paintTriangle(at points: [CGPoint], mutualExclusive: Bool = true) {
-        points.forEach { point in
-            board.rowsNodes.enumerated().forEach { indexRow, row in
-                row.enumerated().forEach { indexColumn, triangle in
-                    if triangle.contains(point) {
-                        triangle.fillColor = .red
-                    } else if mutualExclusive {
-                        let reversed: Bool = board.rowsData[indexRow][indexColumn].reversed
-                        triangle.fillColor = reversed ? .systemIndigo : .systemTeal
-                    }
-                }
-            }
+        //Setup Board
+        self.board = Board(amountOfRows: 11, scale: 33, originY: 333) { [weak self] nodes in
+            nodes.forEach { node in self?.addChild(node) }
         }
     }
     
-    func touchDown(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.green
-//            self.addChild(n)
-//        }
+    func touchDown(atPoint point: CGPoint) {
+        board.getTriangle(atScreenPoint: point)?.highlight()
     }
     
-    func touchUp(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.red
-//            self.addChild(n)
-//        }
+    func touchUp(atPoint point: CGPoint) {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -75,7 +40,6 @@ class GameScene: SKScene {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-        paintTriangle(at: touches.compactMap { $0.location(in: self) })
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
