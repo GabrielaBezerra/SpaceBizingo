@@ -43,8 +43,8 @@ class Board {
         return rowsData.compactMap { row in row.filter{ $0.type == type } }
     }
     
-    func triangleNode(at index: Index) -> SKShapeNode {
-        return rowsNodes[index.x][index.y]
+    func getTriangle(at index: Index) -> (node: SKShapeNode, data: TriangleData) {
+        return (node: rowsNodes[index.x][index.y], data: rowsData[index.x][index.y])
     }
     
     private let scale: CGFloat
@@ -113,7 +113,7 @@ class Board {
         }
         
         let offsetY: CGFloat = triangle.type == .pointBottom ? 13 : -10
-        let tnode = triangleNode(at: triangle.position)
+        let tnode = getTriangle(at: triangle.position).node
         let center = CGPoint(x: tnode.path!.boundingBox.midX, y: tnode.path!.boundingBox.midY + offsetY)
         let piece = Piece(color: color, position: center, captain: captain)
         
@@ -202,11 +202,14 @@ extension Board: TriangleDataDelegate {
                 $0.removeFromParent()
             }
         }
-        
-        let selectedMask = triangleNode(at: index).copy() as! SKShapeNode
-        selectedMask.lineWidth = 5
-        selectedMask.fillColor = Colors.highlight.color
-        self.node.addChild(selectedMask)
+        let triangle = getTriangle(at: index)
+        if !triangle.data.isEmpty {
+            let selectedMask = triangle.node.copy() as! SKShapeNode
+            selectedMask.lineWidth = 5
+            selectedMask.strokeColor = Colors.highlightStroke.color
+            selectedMask.fillColor = Colors.highlight.color
+            self.node.addChild(selectedMask)
+        }
     }
     
     func didUnselect(index: Index) {

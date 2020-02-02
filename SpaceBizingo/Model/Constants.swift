@@ -12,6 +12,7 @@ import UIKit
 enum Colors {
     
     case highlight
+    case highlightStroke
     
     case trianglePointUp
     case trianglePointDown
@@ -32,6 +33,7 @@ enum Colors {
             case .playerTopCaptain: return UIColor(red: 117/255, green: 45/255, blue: 213/255, alpha: 1)
             case .playerBottomCaptain: return .yellow
             case .highlight: return UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+            case .highlightStroke: return UIColor.systemBlue
             }
         }
     }
