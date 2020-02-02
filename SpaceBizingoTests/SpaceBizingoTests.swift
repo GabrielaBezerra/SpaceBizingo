@@ -13,7 +13,7 @@ import SpriteKit
 
 class SpaceBizingoTests: XCTestCase {
 
-    let board: Board = Board(amountOfRows: 8, scale: 43, yOrigin: 303)
+    let board: Board = Board(amountOfRows: 8, scale: 43, originY: 303)
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

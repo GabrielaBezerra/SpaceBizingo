@@ -9,13 +9,26 @@
 import Foundation
 import UIKit
 
+protocol TriangleDataDelegate: class {
+    func didSelect(index: Index)
+    func didUnselect(index: Index)
+    func didSetPiece(triangle: TriangleData)
+    func didSetCaptain(triangle: TriangleData)
+    func didDie(triangle: TriangleData)
+}
+
 class TriangleData {
     
+    weak var delegate: TriangleDataDelegate!
     let position: Index
     let type: TriangleType
     let bgColor: UIColor!
     let pieceColor: UIColor!
     let captainColor: UIColor!
+    
+    private enum CodingKeys: String, CodingKey {
+        case position
+    }
     
     init(position: Index, type: TriangleType, colorHandler: @escaping (UIColor) -> Void) {
         self.position = position
@@ -42,6 +55,13 @@ class TriangleData {
         }
     }
     
+    private(set) var isSelected: Bool = false {
+        didSet {
+            if isSelected { delegate.didSelect(index: self.position) }
+            else { delegate.didSelect(index: self.position) }
+        }
+    }
+    
     private(set) var hasPiece: Bool = false {
         didSet {
             if isEmpty {
@@ -64,12 +84,14 @@ class TriangleData {
     
     func setPiece() {
         self.hasPiece = true
-        setColorHandler?(pieceColor)
+        //setColorHandler?(pieceColor)
+        delegate.didSetPiece(triangle: self)
     }
     
     func setCaptain() {
-          self.hasCaptain = true
-          setColorHandler?(captainColor)
+        self.hasCaptain = true
+        setColorHandler?(captainColor)
+        delegate.didSetCaptain(triangle: self)
     }
     
     func setEmpty() {
@@ -77,9 +99,10 @@ class TriangleData {
         setColorHandler?(bgColor)
     }
     
-    func highlight() {
-        setColorHandler?(Colors.highlight.color)
+    func select() {
+        self.isSelected = true
     }
+    
 }
 
 

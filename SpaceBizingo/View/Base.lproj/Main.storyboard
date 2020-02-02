@@ -212,5 +212,5 @@
         <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
         <image name="paperplane" catalog="system" width="64" height="60"/>
     </resources>
-    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+    <color key="tintColor" red="0.31448337440000002" green="0.69637519120000002" blue="0.46764111520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

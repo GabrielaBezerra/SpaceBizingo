@@ -22,6 +22,7 @@
 		06EFF7BB23E2A3A400CD2013 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BA23E2A3A400CD2013 /* Board.swift */; };
 		06EFF7BD23E2A3AF00CD2013 /* TriangleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */; };
 		06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BF23E4B98D00CD2013 /* Constants.swift */; };
+		06EFF7C223E75A6C00CD2013 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C123E75A6C00CD2013 /* Piece.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		06EFF7BA23E2A3A400CD2013 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleNode.swift; sourceTree = "<group>"; };
 		06EFF7BF23E4B98D00CD2013 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		06EFF7C123E75A6C00CD2013 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				06EFF7BF23E4B98D00CD2013 /* Constants.swift */,
 				06EFF7BA23E2A3A400CD2013 /* Board.swift */,
+				06EFF7C123E75A6C00CD2013 /* Piece.swift */,
 				0663A90523E30478007805C4 /* Index.swift */,
 				06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */,
 				0663A90323E30456007805C4 /* TriangleData.swift */,
@@ -303,6 +306,7 @@
 				06EFF78F23E2705A00CD2013 /* GameViewController.swift in Sources */,
 				06EFF7BD23E2A3AF00CD2013 /* TriangleNode.swift in Sources */,
 				0663A90423E30456007805C4 /* TriangleData.swift in Sources */,
+				06EFF7C223E75A6C00CD2013 /* Piece.swift in Sources */,
 				06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */,
 				06EFF7BB23E2A3A400CD2013 /* Board.swift in Sources */,
 				06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */,

@@ -22,13 +22,12 @@ class GameScene: SKScene {
         self.lastUpdateTime = 0
         
         //Setup Board
-        self.board = Board(amountOfRows: 11, scale: 33, originY: 333) { [weak self] nodes in
-            nodes.forEach { node in self?.addChild(node) }
-        }
+        self.board = Board(amountOfRows: 11, scale: 33, originY: 333)
+        self.addChild(board.node)
     }
     
     func touchDown(atPoint point: CGPoint) {
-        board.getTriangle(atScreenPoint: point)?.highlight()
+        board.getTriangle(atScreenPoint: point)?.select()
     }
     
     func touchUp(atPoint point: CGPoint) {
