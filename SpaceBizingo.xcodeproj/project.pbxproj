@@ -23,6 +23,9 @@
 		06EFF7BD23E2A3AF00CD2013 /* TriangleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */; };
 		06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BF23E4B98D00CD2013 /* Constants.swift */; };
 		06EFF7C223E75A6C00CD2013 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C123E75A6C00CD2013 /* Piece.swift */; };
+		06EFF7C423E76D9600CD2013 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C323E76D9600CD2013 /* Chat.swift */; };
+		06EFF7C623E76D9D00CD2013 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* ChatService.swift */; };
+		06EFF7CB23E76E4500CD2013 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7CA23E76E4500CD2013 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleNode.swift; sourceTree = "<group>"; };
 		06EFF7BF23E4B98D00CD2013 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		06EFF7C123E75A6C00CD2013 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
+		06EFF7C323E76D9600CD2013 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		06EFF7C523E76D9D00CD2013 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		06EFF7CA23E76E4500CD2013 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,11 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				06EFF7BF23E4B98D00CD2013 /* Constants.swift */,
-				06EFF7BA23E2A3A400CD2013 /* Board.swift */,
-				06EFF7C123E75A6C00CD2013 /* Piece.swift */,
-				0663A90523E30478007805C4 /* Index.swift */,
-				06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */,
-				0663A90323E30456007805C4 /* TriangleData.swift */,
+				06EFF7CD23E76E5900CD2013 /* Game */,
+				06EFF7CC23E76E4B00CD2013 /* Chat */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -140,12 +143,12 @@
 		06EFF78523E2705A00CD2013 /* SpaceBizingo */ = {
 			isa = PBXGroup;
 			children = (
-				0663A90823E31E74007805C4 /* View */,
-				0663A90723E31E55007805C4 /* Model */,
-				06EFF78623E2705A00CD2013 /* AppDelegate.swift */,
-				06EFF78C23E2705A00CD2013 /* GameScene.swift */,
-				06EFF78E23E2705A00CD2013 /* GameViewController.swift */,
 				06EFF79823E2705C00CD2013 /* Info.plist */,
+				06EFF78623E2705A00CD2013 /* AppDelegate.swift */,
+				0663A90723E31E55007805C4 /* Model */,
+				0663A90823E31E74007805C4 /* View */,
+				06EFF7C723E76DB000CD2013 /* Controller */,
+				06EFF7C923E76DE200CD2013 /* Service */,
 			);
 			path = SpaceBizingo;
 			sourceTree = "<group>";
@@ -166,6 +169,52 @@
 				06EFF7AE23E2705D00CD2013 /* Info.plist */,
 			);
 			path = SpaceBizingoUITests;
+			sourceTree = "<group>";
+		};
+		06EFF7C723E76DB000CD2013 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				06EFF7C823E76DBC00CD2013 /* Scene */,
+				06EFF78E23E2705A00CD2013 /* GameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		06EFF7C823E76DBC00CD2013 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				06EFF78C23E2705A00CD2013 /* GameScene.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		06EFF7C923E76DE200CD2013 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				06EFF7C523E76D9D00CD2013 /* ChatService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		06EFF7CC23E76E4B00CD2013 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				06EFF7C323E76D9600CD2013 /* Chat.swift */,
+				06EFF7CA23E76E4500CD2013 /* Message.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		06EFF7CD23E76E5900CD2013 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				06EFF7BA23E2A3A400CD2013 /* Board.swift */,
+				06EFF7C123E75A6C00CD2013 /* Piece.swift */,
+				0663A90523E30478007805C4 /* Index.swift */,
+				06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */,
+				0663A90323E30456007805C4 /* TriangleData.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,12 +353,15 @@
 				06EFF78D23E2705A00CD2013 /* GameScene.swift in Sources */,
 				0663A90623E30478007805C4 /* Index.swift in Sources */,
 				06EFF78F23E2705A00CD2013 /* GameViewController.swift in Sources */,
+				06EFF7C423E76D9600CD2013 /* Chat.swift in Sources */,
 				06EFF7BD23E2A3AF00CD2013 /* TriangleNode.swift in Sources */,
 				0663A90423E30456007805C4 /* TriangleData.swift in Sources */,
 				06EFF7C223E75A6C00CD2013 /* Piece.swift in Sources */,
 				06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */,
 				06EFF7BB23E2A3A400CD2013 /* Board.swift in Sources */,
+				06EFF7CB23E76E4500CD2013 /* Message.swift in Sources */,
 				06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */,
+				06EFF7C623E76D9D00CD2013 /* ChatService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
