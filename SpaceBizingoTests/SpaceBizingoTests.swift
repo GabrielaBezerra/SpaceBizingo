@@ -39,8 +39,8 @@ class SpaceBizingoTests: XCTestCase {
                 
                 let index = Index(x: indexRow, y: indexColumn)
                 
-                let triangleNode = board.rowsNodes[index.x][index.y]
-                let triangleData = board.rowsData[index.x][index.y]
+                let triangleNode = board.rowsNodes[index.row][index.column]
+                let triangleData = board.rowsData[index.row][index.column]
                 
                 testAnatomyOfTriangles(node: triangleNode, data: triangleData)
                 

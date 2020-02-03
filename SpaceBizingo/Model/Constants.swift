@@ -32,8 +32,8 @@ enum Colors {
             case .playerTop: return .black
             case .playerTopCaptain: return UIColor(red: 117/255, green: 45/255, blue: 213/255, alpha: 1)
             case .playerBottomCaptain: return .yellow
-            case .highlight: return UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-            case .highlightStroke: return UIColor.systemBlue
+            case .highlight: return UIColor.init(red: 0, green: 1, blue: 0, alpha: 0.5)
+            case .highlightStroke: return UIColor.green
             }
         }
     }

@@ -58,7 +58,7 @@ class TriangleData {
     private(set) var isSelected: Bool = false {
         didSet {
             if isSelected { delegate.didSelect(index: self.position) }
-            else { delegate.didSelect(index: self.position) }
+            else { delegate.didUnselect(index: self.position) }
         }
     }
     

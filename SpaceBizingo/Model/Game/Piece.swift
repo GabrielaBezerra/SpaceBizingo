@@ -13,9 +13,12 @@ class Piece {
     
     var node: SKShapeNode
     var isCaptain: Bool
+    var index: Index
+    var possibleMoves: [Index] = []
     
-    init(color: UIColor, position: CGPoint, captain: Bool = false) {
+    init(color: UIColor, position: CGPoint, captain: Bool = false, index: Index) {
         
+        self.index = index
         self.isCaptain = captain
         
         let piece = SKShapeNode(circleOfRadius: 15)

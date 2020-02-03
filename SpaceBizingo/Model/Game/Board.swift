@@ -44,7 +44,7 @@ class Board {
     }
     
     func getTriangle(at index: Index) -> (node: SKShapeNode, data: TriangleData) {
-        return (node: rowsNodes[index.x][index.y], data: rowsData[index.x][index.y])
+        return (node: rowsNodes[index.row][index.column], data: rowsData[index.row][index.column])
     }
     
     private let scale: CGFloat
@@ -115,7 +115,7 @@ class Board {
         let offsetY: CGFloat = triangle.type == .pointBottom ? 13 : -10
         let tnode = getTriangle(at: triangle.position).node
         let center = CGPoint(x: tnode.path!.boundingBox.midX, y: tnode.path!.boundingBox.midY + offsetY)
-        let piece = Piece(color: color, position: center, captain: captain)
+        let piece = Piece(color: color, position: center, captain: captain, index: triangle.position)
         
         self.pieces.append(piece)
         self.node.addChild(piece.node)
@@ -157,7 +157,7 @@ class Board {
                                                     scale: scale)
             
             let type: TriangleType = condition ? .pointBottom : .pointTop
-            let triangleData = TriangleData(position: Index(x: i, y: j), type: type) {
+            let triangleData = TriangleData(position: Index(row: i, column: j), type: type) {
                 [weak triangleNode] color in
                 triangleNode?.fillColor = color
             }
@@ -178,6 +178,9 @@ class Board {
         return nil
     }
     
+    func getPiece(at index: Index) -> Piece? {
+        return pieces.filter { $0.index == index }.first
+    }
 }
 
 
@@ -202,18 +205,64 @@ extension Board: TriangleDataDelegate {
                 $0.removeFromParent()
             }
         }
+        
         let triangle = getTriangle(at: index)
+        let piece = getPiece(at: index)
+
         if !triangle.data.isEmpty {
+            
             let selectedMask = triangle.node.copy() as! SKShapeNode
             selectedMask.lineWidth = 5
             selectedMask.strokeColor = Colors.highlightStroke.color
             selectedMask.fillColor = Colors.highlight.color
             self.node.addChild(selectedMask)
+            
+            let m1 = rowsNodes[index.row][index.column + 2].copy() as! SKShapeNode
+            m1.lineWidth = 5
+            m1.strokeColor = Colors.highlightStroke.color
+            m1.fillColor = Colors.highlight.color
+            
+            let m2 = rowsNodes[index.row][index.column - 2].copy() as! SKShapeNode
+            m2.lineWidth = 5
+            m2.strokeColor = Colors.highlightStroke.color
+            m2.fillColor = Colors.highlight.color
+            
+            let m3 = rowsNodes[index.row + 1][index.column].copy() as! SKShapeNode
+            m3.lineWidth = 5
+            m3.strokeColor = Colors.highlightStroke.color
+            m3.fillColor = Colors.highlight.color
+            
+            let m6 = rowsNodes[index.row + 1][index.column + 2].copy() as! SKShapeNode
+            m6.lineWidth = 5
+            m6.strokeColor = Colors.highlightStroke.color
+            m6.fillColor = Colors.highlight.color
+            
+            let m4 = rowsNodes[index.row - 1][index.column].copy() as! SKShapeNode
+            m4.lineWidth = 5
+            m4.strokeColor = Colors.highlightStroke.color
+            m4.fillColor = Colors.highlight.color
+            
+            let m5 = rowsNodes[index.row - 1][index.column - 2].copy() as! SKShapeNode
+            m5.lineWidth = 5
+            m5.strokeColor = Colors.highlightStroke.color
+            m5.fillColor = Colors.highlight.color
+            
+            
+            self.node.addChild(m1)
+            self.node.addChild(m2)
+            self.node.addChild(m3)
+            self.node.addChild(m4)
+            self.node.addChild(m5)
+            self.node.addChild(m6)
         }
     }
     
     func didUnselect(index: Index) {
-        
+        node.children.forEach {
+            if ($0 as! SKShapeNode).fillColor == Colors.highlight.color {
+                $0.removeFromParent()
+            }
+        }
     }
     
 }

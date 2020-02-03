@@ -14,7 +14,7 @@ extension SKShapeNode {
     
     var reversed: Bool {
         get {
-            return (self.fillColor.description == UIColor(cgColor: Colors.trianglePointDown.color.cgColor).description)
+            return (self.fillColor.description == Colors.trianglePointDown.color.description)
         }
     }
     

@@ -9,6 +9,6 @@
 import Foundation
 
 struct Index: Codable, Equatable {
-    let x: Int
-    let y: Int
+    let row: Int
+    let column: Int
 }
