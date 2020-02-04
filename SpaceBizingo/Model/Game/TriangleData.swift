@@ -20,7 +20,7 @@ protocol TriangleDataDelegate: class {
 class TriangleData {
     
     weak var delegate: TriangleDataDelegate!
-    let position: Index
+    let index: Index
     let type: TriangleType
     let bgColor: UIColor!
     let pieceColor: UIColor!
@@ -31,7 +31,7 @@ class TriangleData {
     }
     
     init(position: Index, type: TriangleType, colorHandler: @escaping (UIColor) -> Void) {
-        self.position = position
+        self.index = position
         self.type = type
         self.setColorHandler = colorHandler
         
@@ -48,7 +48,7 @@ class TriangleData {
     
     private(set) var isEmpty: Bool = true {
         didSet {
-            if hasPiece {
+            if isEmpty {
                 hasPiece = false
                 hasCaptain = false
             }
@@ -57,14 +57,14 @@ class TriangleData {
     
     private(set) var isSelected: Bool = false {
         didSet {
-            if isSelected { delegate.didSelect(index: self.position) }
-            else { delegate.didUnselect(index: self.position) }
+            if isSelected { delegate.didSelect(index: self.index) }
+            else { delegate.didUnselect(index: self.index) }
         }
     }
     
     private(set) var hasPiece: Bool = false {
         didSet {
-            if isEmpty {
+            if hasPiece {
                 isEmpty = false
                 hasCaptain = false
             }
@@ -73,7 +73,7 @@ class TriangleData {
     
     private(set) var hasCaptain: Bool = false {
         didSet {
-            if isEmpty {
+            if hasCaptain {
                 isEmpty = false
                 hasPiece = false
             }

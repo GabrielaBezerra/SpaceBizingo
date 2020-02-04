@@ -32,6 +32,11 @@ import SpriteKit
  - How to deal with borders?
  */
 
+struct Triangle {
+    let node: SKShapeNode
+    let data: TriangleData
+}
+
 class Board {
     
     private(set) var node: SKNode = SKNode()
@@ -43,8 +48,11 @@ class Board {
         return rowsData.compactMap { row in row.filter{ $0.type == type } }
     }
     
-    func getTriangle(at index: Index) -> (node: SKShapeNode, data: TriangleData) {
-        return (node: rowsNodes[index.row][index.column], data: rowsData[index.row][index.column])
+    func getTriangle(at index: Index) -> Triangle? {
+        if index.row >= 0, index.column >= 0, index.row < rowsNodes.count, index.column < rowsNodes[index.row].count {
+            return Triangle(node: rowsNodes[index.row][index.column], data: rowsData[index.row][index.column])
+        }
+        return nil
     }
     
     private let scale: CGFloat
@@ -107,18 +115,21 @@ class Board {
     
     private func placePiece(at triangle: TriangleData, captain: Bool = false) {
         
+        triangle.setPiece()
+        
         var color =  triangle.type == .pointBottom ? Colors.playerBottom.color : Colors.playerTop.color
         if captain {
             color = triangle.type == .pointBottom ? Colors.playerBottomCaptain.color : Colors.playerTopCaptain.color
         }
         
         let offsetY: CGFloat = triangle.type == .pointBottom ? 13 : -10
-        let tnode = getTriangle(at: triangle.position).node
-        let center = CGPoint(x: tnode.path!.boundingBox.midX, y: tnode.path!.boundingBox.midY + offsetY)
-        let piece = Piece(color: color, position: center, captain: captain, index: triangle.position)
-        
-        self.pieces.append(piece)
-        self.node.addChild(piece.node)
+        if let tnode = getTriangle(at: triangle.index)?.node {
+            let center = CGPoint(x: tnode.path!.boundingBox.midX, y: tnode.path!.boundingBox.midY + offsetY)
+            let piece = Piece(color: color, position: center, captain: captain, index: triangle.index)
+            
+            self.pieces.append(piece)
+            self.node.addChild(piece.node)
+        }
     }
     
     func setup(numberOfRows: Int) {
@@ -181,8 +192,26 @@ class Board {
     func getPiece(at index: Index) -> Piece? {
         return pieces.filter { $0.index == index }.first
     }
+    
+    func turnOnMasks(for moves: [Triangle?], at piece: Piece) {
+        moves.forEach {
+            if let tile = $0 {
+                if tile.data.isEmpty {
+                    createMoveMask(triangle: tile)
+                    piece.possibleMoves.append(tile.data.index)
+                }
+            }
+        }
+    }
+    
+    func createMoveMask(triangle: Triangle) {
+        let mask = triangle.node.copy() as! SKShapeNode
+        mask.lineWidth = 5
+        mask.strokeColor = Colors.highlightStroke.color
+        mask.fillColor = Colors.highlight.color
+        self.node.addChild(mask)
+    }
 }
-
 
 extension Board: TriangleDataDelegate {
     
@@ -206,9 +235,43 @@ extension Board: TriangleDataDelegate {
             }
         }
         
-        let triangle = getTriangle(at: index)
-        let piece = getPiece(at: index)
-
+        guard let triangle: Triangle = getTriangle(at: index) else { return }
+        guard let piece = getPiece(at: index) else { return }
+        
+        let moves: [Triangle?] = [
+            getTriangle(at: Index(row: index.row, column: index.column + 2)),       //left
+            getTriangle(at: Index(row: index.row + 1, column: index.column + 2)),   //bottom left
+            getTriangle(at: Index(row: index.row + 1, column: index.column)),       //bottom right
+            getTriangle(at: Index(row: index.row, column: index.column - 2)),       //right
+            getTriangle(at: Index(row: index.row - 1, column: index.column - 2)),   //top left
+            getTriangle(at: Index(row: index.row - 1, column: index.column))        //top right
+        ]
+        
+        let movesFor2LastRow: [Triangle?] = [
+            getTriangle(at: Index(row: index.row, column: index.column + 2)),       //left
+            getTriangle(at: Index(row: index.row + 1, column: index.column - 2)),   //bottom left
+            getTriangle(at: Index(row: index.row + 1, column: index.column)),       //bottom right
+            getTriangle(at: Index(row: index.row, column: index.column - 2)),       //right
+            getTriangle(at: Index(row: index.row - 1, column: index.column - 1)),   //top right
+            getTriangle(at: Index(row: index.row - 1, column: index.column + 1))    //top left
+        ]
+        
+        let movesFor3LastRow: [Triangle?] = [
+            getTriangle(at: Index(row: index.row, column: index.column + 2)),       //left
+            getTriangle(at: Index(row: index.row + 1, column: index.column + 1)),   //bottom left
+            getTriangle(at: Index(row: index.row + 1, column: index.column - 1)),   //bottom right
+            getTriangle(at: Index(row: index.row, column: index.column - 2)),       //right
+            getTriangle(at: Index(row: index.row - 1, column: index.column - 2)),   //top right
+            getTriangle(at: Index(row: index.row - 1, column: index.column))        //top left
+        ]
+        
+        let movesForLastRow: [Triangle?] = [
+            getTriangle(at: Index(row: index.row, column: index.column + 2)),       //left
+            getTriangle(at: Index(row: index.row, column: index.column - 2)),       //right
+            getTriangle(at: Index(row: index.row - 1, column: index.column)),       //top right
+            getTriangle(at: Index(row: index.row - 1, column: index.column + 2))    //top left
+        ]
+        
         if !triangle.data.isEmpty {
             
             let selectedMask = triangle.node.copy() as! SKShapeNode
@@ -217,44 +280,28 @@ extension Board: TriangleDataDelegate {
             selectedMask.fillColor = Colors.highlight.color
             self.node.addChild(selectedMask)
             
-            let m1 = rowsNodes[index.row][index.column + 2].copy() as! SKShapeNode
-            m1.lineWidth = 5
-            m1.strokeColor = Colors.highlightStroke.color
-            m1.fillColor = Colors.highlight.color
+            if triangle.data.index.row < rowsNodes.count - 3 {
+                
+                turnOnMasks(for: moves, at: piece)
+                
+            } else if triangle.data.index.row == rowsNodes.count - 3 {
+                
+                turnOnMasks(for: movesFor3LastRow, at: piece)
+                
+            } else if triangle.data.index.row == rowsNodes.count - 2 {
+                
+                turnOnMasks(for: movesFor2LastRow, at: piece)
+                
+            } else if triangle.data.index.row == rowsNodes.count - 1 {
+                
+                turnOnMasks(for: movesForLastRow, at: piece)
+                
+            }
             
-            let m2 = rowsNodes[index.row][index.column - 2].copy() as! SKShapeNode
-            m2.lineWidth = 5
-            m2.strokeColor = Colors.highlightStroke.color
-            m2.fillColor = Colors.highlight.color
-            
-            let m3 = rowsNodes[index.row + 1][index.column].copy() as! SKShapeNode
-            m3.lineWidth = 5
-            m3.strokeColor = Colors.highlightStroke.color
-            m3.fillColor = Colors.highlight.color
-            
-            let m6 = rowsNodes[index.row + 1][index.column + 2].copy() as! SKShapeNode
-            m6.lineWidth = 5
-            m6.strokeColor = Colors.highlightStroke.color
-            m6.fillColor = Colors.highlight.color
-            
-            let m4 = rowsNodes[index.row - 1][index.column].copy() as! SKShapeNode
-            m4.lineWidth = 5
-            m4.strokeColor = Colors.highlightStroke.color
-            m4.fillColor = Colors.highlight.color
-            
-            let m5 = rowsNodes[index.row - 1][index.column - 2].copy() as! SKShapeNode
-            m5.lineWidth = 5
-            m5.strokeColor = Colors.highlightStroke.color
-            m5.fillColor = Colors.highlight.color
-            
-            
-            self.node.addChild(m1)
-            self.node.addChild(m2)
-            self.node.addChild(m3)
-            self.node.addChild(m4)
-            self.node.addChild(m5)
-            self.node.addChild(m6)
         }
+        
+        
+        
     }
     
     func didUnselect(index: Index) {
