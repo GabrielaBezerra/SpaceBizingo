@@ -1,5 +1,5 @@
 //
-//  TriangleDataDelegate.swift
+//  TriangleStateDelegate.swift
 //  SpaceBizingo
 //
 //  Created by Gabriela Bezerra on 2/12/20.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-protocol TriangleDataDelegate: class {
+protocol TriangleStateDelegate: class {
     func didSelect(index: Index)
     func didUnselect(index: Index)
-    func didSetPiece(triangle: TriangleData)
-    func didSetCaptain(triangle: TriangleData)
-    func didDie(triangle: TriangleData)
+    func didSetPiece(triangle: TriangleState)
+    func didSetCaptain(triangle: TriangleState)
+    func didDie(triangle: TriangleState)
 }

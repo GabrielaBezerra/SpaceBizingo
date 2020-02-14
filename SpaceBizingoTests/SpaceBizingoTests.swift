@@ -63,36 +63,36 @@ class SpaceBizingoTests: XCTestCase {
         return board.rowsData.count
     }
     
-    func testAmountOfTriangles(dataRow: [TriangleData], nodeRow: [SKShapeNode]) -> Int {
+    func testAmountOfTriangles(dataRow: [TriangleState], nodeRow: [SKShapeNode]) -> Int {
         XCTAssertEqual(dataRow.count, nodeRow.count)
         return dataRow.count
     }
     
-    func testAnatomyOfTriangles(node: SKShapeNode, data: TriangleData) {
+    func testAnatomyOfTriangles(node: SKShapeNode, data: TriangleState) {
         XCTAssertEqual(node.reversed, data.opponent)
     }
     
-    func testTriangleInitialEmptyState(data: TriangleData) {
+    func testTriangleInitialEmptyState(data: TriangleState) {
         XCTAssertEqual(data.isEmpty, true)
         XCTAssertEqual(data.hasRed, false)
         XCTAssertEqual(data.hasBlue, false)
     }
     
-    func testTriangleEmptyState(data: TriangleData) {
+    func testTriangleEmptyState(data: TriangleState) {
         data.setEmpty()
         XCTAssertEqual(data.isEmpty, true)
         XCTAssertEqual(data.hasRed, false)
         XCTAssertEqual(data.hasBlue, false)
     }
     
-    func testTriangleHasBlueState(data: TriangleData) {
+    func testTriangleHasBlueState(data: TriangleState) {
         data.setBlue()
         XCTAssertEqual(data.isEmpty, false)
         XCTAssertEqual(data.hasRed, false)
         XCTAssertEqual(data.hasBlue, true)
     }
     
-    func testTriangleHasRedState(data: TriangleData) {
+    func testTriangleHasRedState(data: TriangleState) {
         data.setRed()
         XCTAssertEqual(data.isEmpty, false)
         XCTAssertEqual(data.hasRed, true)

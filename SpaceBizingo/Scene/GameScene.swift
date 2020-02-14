@@ -28,11 +28,27 @@ class GameScene: SKScene {
     }
     
     func touchDown(atPoint point: CGPoint) {
-        guard let triangleData = board.getTriangle(atScreenPoint: point) else { return }
-        let index = triangleData.index
-        //Vincular cada possibleMove a sua piece? Caso sim, aqui move a peça
-            //board.movePiece(from: Index(row: 2, column: 2), to: Index(row: 2, column: 0))
         
+        //get triangle at touch point
+        guard let touchedTriangleData = board.getTriangle(atScreenPoint: point) else { return }
+
+        //verify if there is any piece selected
+        if let selectedTriangle = board.getSelectedTriangle(),
+           let pieceAtSelectedTriangle = board.getPiece(at: selectedTriangle.data.index) {
+        
+            //verify if touch was in possibleMoves
+            if pieceAtSelectedTriangle.possibleMoves.contains(touchedTriangleData.index) {
+                board.movePiece(from: pieceAtSelectedTriangle.index, to: touchedTriangleData.index)
+            } else {
+                selectedTriangle.data.deselect()
+            }
+        
+        } else {
+            // No selected triangle, select it!
+            if touchedTriangleData.hasPiece {
+                touchedTriangleData.select()
+            }
+        }
         
     }
     
@@ -43,9 +59,9 @@ class GameScene: SKScene {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+//    }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }

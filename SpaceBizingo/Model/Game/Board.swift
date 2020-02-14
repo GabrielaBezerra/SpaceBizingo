@@ -34,18 +34,31 @@ import SpriteKit
 
 struct Triangle {
     let node: SKShapeNode
-    let data: TriangleData
+    let data: TriangleState
 }
 
 class Board {
     
     private(set) var node: SKNode = SKNode()
     private var rowsNodes : [[SKShapeNode]] = []
-    private var rowsData: [[TriangleData]] = []
+    private var rowsData: [[TriangleState]] = []
     private var pieces: [Piece] = []
     
-    func triangleDatas(of type: TriangleType) -> [[TriangleData]] {
+    func triangleDatas(of type: TriangleType) -> [[TriangleState]] {
         return rowsData.compactMap { row in row.filter{ $0.type == type } }
+    }
+    
+    func getSelectedTriangle() -> Triangle? {
+        for (indexRow, row) in rowsNodes.enumerated() {
+            for (indexColumn, triangleNode) in row.enumerated() {
+                let triangleData = rowsData[indexRow][indexColumn]
+                triangleData.delegate = self
+                if triangleData.isSelected {
+                    return Triangle(node: triangleNode, data: triangleData)
+                }
+            }
+        }
+        return nil
     }
     
     func getTriangle(at index: Index) -> Triangle? {
@@ -113,7 +126,7 @@ class Board {
         placePiece(at: playerBottomTriangleDatas[7][6], captain: true)
     }
     
-    private func placePiece(at triangle: TriangleData, captain: Bool = false) {
+    private func placePiece(at triangle: TriangleState, captain: Bool = false) {
         
         triangle.setPiece()
         
@@ -127,6 +140,7 @@ class Board {
             let center = CGPoint(x: tnode.path!.boundingBox.midX, y: tnode.path!.boundingBox.midY + offsetY)
             let piece = Piece(color: color, position: center, captain: captain, index: triangle.index)
             
+            piece.delegate = self
             self.pieces.append(piece)
             self.node.addChild(piece.node)
         }
@@ -168,7 +182,7 @@ class Board {
                                                     scale: scale)
             
             let type: TriangleType = condition ? .pointBottom : .pointTop
-            let triangleData = TriangleData(position: Index(row: i, column: j), type: type) {
+            let triangleData = TriangleState(position: Index(row: i, column: j), type: type) {
                 [weak triangleNode] color in
                 triangleNode?.fillColor = color
             }
@@ -179,7 +193,7 @@ class Board {
         }
     }
     
-    func getTriangle(atScreenPoint point: CGPoint) -> TriangleData? {
+    func getTriangle(atScreenPoint point: CGPoint) -> TriangleState? {
         for (indexRow, row) in rowsNodes.enumerated() {
             for (indexColumn, triangleNode) in row.enumerated() {
                 let triangleData = rowsData[indexRow][indexColumn]
@@ -215,26 +229,29 @@ class Board {
     func movePiece(from originIndex: Index, to newIndex: Index) {
         guard
             let originTriangle = getTriangle(at: originIndex),
-            let newTriangle = getTriangle(at: newIndex),
+            let triangleAtNewPosition = getTriangle(at: newIndex),
             let piece = getPiece(at: originIndex) else { return }
         originTriangle.data.setEmpty()
         piece.removeFromBoard()
-        placePiece(at: newTriangle.data, captain: piece.isCaptain)
+        if triangleAtNewPosition.data.isEmpty {
+            placePiece(at: triangleAtNewPosition.data, captain: piece.isCaptain)
+            triangleAtNewPosition.data.deselect()
+        }
     }
 
 }
 
-extension Board: TriangleDataDelegate {
+extension Board: TriangleStateDelegate {
     
-    func didSetPiece(triangle: TriangleData) {
+    func didSetPiece(triangle: TriangleState) {
         
     }
     
-    func didSetCaptain(triangle: TriangleData) {
+    func didSetCaptain(triangle: TriangleState) {
         
     }
     
-    func didDie(triangle: TriangleData) {
+    func didDie(triangle: TriangleState) {
         
     }
     
@@ -330,15 +347,6 @@ extension Board: TriangleDataDelegate {
 
 extension Board: PieceDelegate {
     
-//    func pieceDidMove(from originIndex: Index, to newIndex: Index) {
-//        guard let piece = getPiece(at: originIndex) else { return }
-//        guard let newTriangle = getTriangle(at: newIndex) else { return }
-//        guard let originTriangle = getTriangle(at: originIndex) else { return }
-//        originTriangle.data.setEmpty()
-//        piece.removeFromBoard()
-//        placePiece(at: newTriangle.data, captain: piece.isCaptain)
-//    }
-//    
     func pieceRemoved(from index: Index) {
         pieces = pieces.filter { $0.index != index }
     }

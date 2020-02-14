@@ -1,5 +1,5 @@
 //
-//  TriangleData.swift
+//  TriangleState.swift
 //  SpaceBizingo
 //
 //  Created by Gabriela Bezerra on 30/01/20.
@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class TriangleData {
+class TriangleState {
     
-    weak var delegate: TriangleDataDelegate!
+    weak var delegate: TriangleStateDelegate!
     let index: Index
     let type: TriangleType
     let bgColor: UIColor!
@@ -43,6 +43,7 @@ class TriangleData {
             if isEmpty {
                 hasPiece = false
                 hasCaptain = false
+                isSelected = false
             }
         }
     }
@@ -93,6 +94,10 @@ class TriangleData {
     
     func select() {
         self.isSelected = true
+    }
+    
+    func deselect() {
+        self.isSelected = false
     }
     
 }
