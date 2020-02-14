@@ -211,6 +211,17 @@ class Board {
         mask.fillColor = Colors.highlight.color
         self.node.addChild(mask)
     }
+    
+    func movePiece(from originIndex: Index, to newIndex: Index) {
+        guard
+            let originTriangle = getTriangle(at: originIndex),
+            let newTriangle = getTriangle(at: newIndex),
+            let piece = getPiece(at: originIndex) else { return }
+        originTriangle.data.setEmpty()
+        piece.removeFromBoard()
+        placePiece(at: newTriangle.data, captain: piece.isCaptain)
+    }
+
 }
 
 extension Board: TriangleDataDelegate {
@@ -310,6 +321,26 @@ extension Board: TriangleDataDelegate {
                 $0.removeFromParent()
             }
         }
+    }
+    
+}
+
+
+
+
+extension Board: PieceDelegate {
+    
+//    func pieceDidMove(from originIndex: Index, to newIndex: Index) {
+//        guard let piece = getPiece(at: originIndex) else { return }
+//        guard let newTriangle = getTriangle(at: newIndex) else { return }
+//        guard let originTriangle = getTriangle(at: originIndex) else { return }
+//        originTriangle.data.setEmpty()
+//        piece.removeFromBoard()
+//        placePiece(at: newTriangle.data, captain: piece.isCaptain)
+//    }
+//    
+    func pieceRemoved(from index: Index) {
+        pieces = pieces.filter { $0.index != index }
     }
     
 }

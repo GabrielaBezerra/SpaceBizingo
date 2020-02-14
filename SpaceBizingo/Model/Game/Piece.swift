@@ -11,6 +11,8 @@ import SpriteKit
 
 class Piece {
     
+    weak var delegate: PieceDelegate?
+    
     var node: SKShapeNode
     var isCaptain: Bool
     var index: Index
@@ -38,6 +40,11 @@ class Piece {
         node.addChild(piece)
         
         self.node = node
+    }
+    
+    func removeFromBoard() {
+        self.node.removeFromParent()
+        delegate?.pieceRemoved(from: index)
     }
     
 }

@@ -48,3 +48,9 @@ enum Player {
     case playerTop
     case playerBottom
 }
+
+enum GameResult {
+    case topWin
+    case bottomWin
+    case draw
+}

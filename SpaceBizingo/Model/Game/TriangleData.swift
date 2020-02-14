@@ -9,14 +9,6 @@
 import Foundation
 import UIKit
 
-protocol TriangleDataDelegate: class {
-    func didSelect(index: Index)
-    func didUnselect(index: Index)
-    func didSetPiece(triangle: TriangleData)
-    func didSetCaptain(triangle: TriangleData)
-    func didDie(triangle: TriangleData)
-}
-
 class TriangleData {
     
     weak var delegate: TriangleDataDelegate!

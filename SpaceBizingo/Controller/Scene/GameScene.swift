@@ -17,6 +17,7 @@ class GameScene: SKScene {
     private var lastUpdateTime : TimeInterval = 0
 
     private var board: Board!
+    private var pieces: [Piece] = []
     
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
@@ -27,7 +28,12 @@ class GameScene: SKScene {
     }
     
     func touchDown(atPoint point: CGPoint) {
-        board.getTriangle(atScreenPoint: point)?.select()
+        guard let triangleData = board.getTriangle(atScreenPoint: point) else { return }
+        let index = triangleData.index
+        //Vincular cada possibleMove a sua piece? Caso sim, aqui move a peça
+            //board.movePiece(from: Index(row: 2, column: 2), to: Index(row: 2, column: 0))
+        
+        
     }
     
     func touchUp(atPoint point: CGPoint) {
