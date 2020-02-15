@@ -101,13 +101,17 @@ class Board {
             playerTopTriangleDatas[4][i].setPiece()
         }
         for i in 1...6 {
-            placePiece(at: playerTopTriangleDatas[5][i])
-            playerTopTriangleDatas[5][i].setPiece()
+            if i != 2, i != 5 {
+                placePiece(at: playerTopTriangleDatas[5][i])
+                playerTopTriangleDatas[5][i].setPiece()
+            }
         }
         
         for i in 1...7 {
-            placePiece(at: playerBottomTriangleDatas[7][i])
-            playerBottomTriangleDatas[7][i].setPiece()
+            if i != 2, i != 6 {
+                placePiece(at: playerBottomTriangleDatas[7][i])
+                playerBottomTriangleDatas[7][i].setPiece()
+            }
         }
         for i in 2...7 {
             placePiece(at: playerBottomTriangleDatas[8][i])
