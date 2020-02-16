@@ -17,7 +17,9 @@ class GameScene: SKScene {
     private var lastUpdateTime : TimeInterval = 0
 
     private var board: Board!
-    private var pieces: [Piece] = []
+    private var player: Player!
+    
+    private let socketService: SocketService = SocketService()
     
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
@@ -25,6 +27,9 @@ class GameScene: SKScene {
         //Setup Board
         self.board = Board(amountOfRows: 11, scale: 33, originY: 333)
         self.addChild(board.node)
+        
+        //Setup Socket Connection
+        socketService.delegate = self
     }
     
     func touchDown(atPoint point: CGPoint) {
@@ -90,4 +95,34 @@ class GameScene: SKScene {
         
         self.lastUpdateTime = currentTime
     }
+}
+
+
+extension GameScene: GameDelegate {
+    
+    func youArePlayingAt(_ team: String) {
+        self.player = Player(rawValue: team)
+        print("👾 You are player \(self.player.rawValue)")
+    }
+    
+    func didStart() {
+        
+    }
+    
+    func newTurn(_ name: String) {
+        
+    }
+    
+    func playerDidMove(_ name: String, from originIndex: Index, to newIndex: Index) {
+        
+    }
+    
+    func didWin(_ name: String) {
+        
+    }
+    
+    func receivedMessage(_ name: String, msg: String) {
+        print("\(name):",msg)
+    }
+    
 }

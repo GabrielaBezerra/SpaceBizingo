@@ -44,9 +44,9 @@ enum TriangleType {
     case pointBottom
 }
 
-enum Player {
-    case playerTop
-    case playerBottom
+enum Player: String {
+    case playerTop = "top"
+    case playerBottom = "bottom"
 }
 
 enum GameResult {

@@ -27,7 +27,7 @@
 		06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BF23E4B98D00CD2013 /* Constants.swift */; };
 		06EFF7C223E75A6C00CD2013 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C123E75A6C00CD2013 /* Piece.swift */; };
 		06EFF7C423E76D9600CD2013 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C323E76D9600CD2013 /* Chat.swift */; };
-		06EFF7C623E76D9D00CD2013 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* ChatService.swift */; };
+		06EFF7C623E76D9D00CD2013 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* SocketService.swift */; };
 		06EFF7CB23E76E4500CD2013 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7CA23E76E4500CD2013 /* Message.swift */; };
 		092920D6DB7289CA301084AC /* Pods_SpaceBizingo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33282BD45B5502860EC2D8A4 /* Pods_SpaceBizingo.framework */; };
 /* End PBXBuildFile section */
@@ -76,7 +76,7 @@
 		06EFF7BF23E4B98D00CD2013 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		06EFF7C123E75A6C00CD2013 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		06EFF7C323E76D9600CD2013 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
-		06EFF7C523E76D9D00CD2013 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		06EFF7C523E76D9D00CD2013 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		06EFF7CA23E76E4500CD2013 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		0DC7A1A18CE2640D06BC4CC7 /* Pods-SpaceBizingo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceBizingo.release.xcconfig"; path = "Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo.release.xcconfig"; sourceTree = "<group>"; };
 		33282BD45B5502860EC2D8A4 /* Pods_SpaceBizingo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceBizingo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,7 +215,7 @@
 		06EFF7C923E76DE200CD2013 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				06EFF7C523E76D9D00CD2013 /* ChatService.swift */,
+				06EFF7C523E76D9D00CD2013 /* SocketService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -449,7 +449,7 @@
 				06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */,
 				0638282923F4E28E00012127 /* BoardDelegate.swift in Sources */,
 				0638282723F4D9C600012127 /* TriangleStateDelegate.swift in Sources */,
-				06EFF7C623E76D9D00CD2013 /* ChatService.swift in Sources */,
+				06EFF7C623E76D9D00CD2013 /* SocketService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
