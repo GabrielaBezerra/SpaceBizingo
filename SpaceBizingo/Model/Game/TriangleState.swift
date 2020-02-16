@@ -13,7 +13,7 @@ class TriangleState {
     
     weak var delegate: TriangleStateDelegate!
     let index: Index
-    let type: TriangleType
+    let type: Player
     let bgColor: UIColor!
     let pieceColor: UIColor!
     let captainColor: UIColor!
@@ -22,7 +22,7 @@ class TriangleState {
         case position
     }
     
-    init(position: Index, type: TriangleType, colorHandler: @escaping (UIColor) -> Void) {
+    init(position: Index, type: Player, colorHandler: @escaping (UIColor) -> Void) {
         self.index = position
         self.type = type
         self.setColorHandler = colorHandler

@@ -39,14 +39,10 @@ enum Colors {
     }
 }
 
-enum TriangleType {
-    case pointTop
-    case pointBottom
-}
-
 enum Player: String {
-    case playerTop = "top"
-    case playerBottom = "bottom"
+    case disconnected = ""
+    case pointTop = "top"
+    case pointBottom = "bottom"
 }
 
 enum GameResult {
@@ -54,3 +50,13 @@ enum GameResult {
     case bottomWin
     case draw
 }
+
+enum GameState: String {
+    case awaitingConnection = "Awaiting Connection from another Player"
+    case waiting = "Waiting for opponents move"
+    case yourTurn = "Make your Move!"
+    case youWin = "You Win!"
+    case youLose = "You Lose!"
+}
+
+

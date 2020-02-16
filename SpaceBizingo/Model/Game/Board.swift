@@ -44,7 +44,7 @@ class Board {
     private var rowsData: [[TriangleState]] = []
     private var pieces: [Piece] = []
     
-    func triangleDatas(of type: TriangleType) -> [[TriangleState]] {
+    func triangleDatas(of type: Player) -> [[TriangleState]] {
         return rowsData.compactMap { row in row.filter{ $0.type == type } }
     }
     
@@ -185,7 +185,7 @@ class Board {
                                                     yOrigin: originY,
                                                     scale: scale)
             
-            let type: TriangleType = condition ? .pointBottom : .pointTop
+            let type: Player = condition ? .pointBottom : .pointTop
             let triangleData = TriangleState(position: Index(row: i, column: j), type: type) {
                 [weak triangleNode] color in
                 triangleNode?.fillColor = color

@@ -9,21 +9,21 @@ function Player(socket) {
     this.name = ""
     this.game = {}
 
-    this.socket.on('disconnect', function(){
-        console.log(this.name+' disconnected');
+    this.socket.on('disconnect', function () {
+        console.log('disconnected')
+        // self.game.disconnectPlayers();
     });
 
-    this.socket.on('chatMessage', function(msg, name) {
-        this.playerBottom.socket.emit('chat message', msg, name);
-        this.playerTop.socket.emit('chat message', msg, name);
+    this.socket.on('chatMessage', function (msg, name) {
+        self.game.sendMessage(msg, name);
     })
 
-    this.socket.on("playerMove", function(x, y) {
+    this.socket.on("playerMove", function (x, y) {
         self.game.playerMove(self, x, y)
     })
 }
 
-Player.prototype.joinGame = function(game) {
+Player.prototype.joinGame = function (game) {
     this.game = game
 }
 
@@ -42,16 +42,16 @@ function Game() {
     this.addHandlers()
 }
 
-Game.prototype.addHandlers = function() {
+Game.prototype.addHandlers = function () {
     var game = this
 
-    this.io.sockets.on("connection", function(socket) {
+    this.io.sockets.on("connection", function (socket) {
         console.log('Connection!')
         game.addPlayer(new Player(socket))
     })
 }
 
-Game.prototype.addPlayer = function(player) {
+Game.prototype.addPlayer = function (player) {
     console.log("adding player")
     if (this.playerBottom === null) {
         this.playerBottom = player
@@ -67,18 +67,28 @@ Game.prototype.addPlayer = function(player) {
     }
 }
 
-Game.prototype.announceWin = function(player, type) {
+Game.prototype.announceWin = function (player, type) {
     this.playerBottom.socket.emit("win", player["name"], type)
     this.playerTop.socket.emit("win", player["name"], type)
     this.resetGame()
 }
 
-Game.prototype.gameOver = function() {
+// Game.prototype.disconnectPlayers = function() {
+//     this.playerBottom = null
+//     this.playerTop = null
+// }
+
+Game.prototype.gameOver = function () {
     this.playerBottom.socket.emit("gameOver")
     this.playerTop.socket.emit("gameOver")
 }
 
-Game.prototype.playerMove = function(player, originX, originY, destinyX, destinyY) {
+Game.prototype.sendMessage = function (msg, name) {
+    this.playerBottom.socket.emit('chatMessage', msg, name);
+    this.playerTop.socket.emit('chatMessage', msg, name);
+}
+
+Game.prototype.playerMove = function (player, originX, originY, destinyX, destinyY) {
     if (player["name"] !== this.currentTurn) { //|| x >= 3 || y >= 3) {
         return
     }
@@ -176,12 +186,12 @@ Game.prototype.playerMove = function(player, originX, originY, destinyX, destiny
     }
 }
 
-Game.prototype.resetGame = function() {
+Game.prototype.resetGame = function () {
     var self = this
     var player1Ans = null
     var player2Ans = null
 
-    var reset = function() {
+    var reset = function () {
         if (player1Ans === null || player2Ans === null) {
             return
         } else if ((player1Ans & player2Ans) === 0) {
@@ -211,17 +221,17 @@ Game.prototype.resetGame = function() {
         self.startGame()
     }
 
-    this.playerBottom.socket.emit("gameReset", function(ans) {
+    this.playerBottom.socket.emit("gameReset", function (ans) {
         player1Ans = ans
         reset()
     })
-    this.playerTop.socket.emit("gameReset", function(ans) {
+    this.playerTop.socket.emit("gameReset", function (ans) {
         player2Ans = ans
         reset()
     })
 }
 
-Game.prototype.startGame = function() {
+Game.prototype.startGame = function () {
     this.playerBottom.socket.emit("startGame")
     this.playerTop.socket.emit("startGame")
 }

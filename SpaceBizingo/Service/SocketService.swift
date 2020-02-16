@@ -49,6 +49,10 @@ class SocketService {
         self.socket.emit("playerMove", originIndex.row, originIndex.column, newIndex.row, newIndex.column)
     }
     
+    func sendMessage(author: String, content: String) {
+        self.socket.emit("chatMessage", content, author)
+    }
+    
     func configSocket() {
         
         socket.on("name") { [weak self] data, ack in
@@ -58,17 +62,21 @@ class SocketService {
             }
         }
         
+        socket.on(clientEvent: .disconnect) { [weak self] data, ack in
+            self?.name = ""
+            self?.delegate?.youArePlayingAt("")
+        }
+        
         socket.on("startGame") { [weak self] data, ack in
             self?.delegate.didStart()
             return
         }
 
         socket.on("chatMessage") { [weak self] data, ack in
-            if let name = data[0] as? String, let msg = data[1] as? String {
+            if let msg = data[0] as? String, let name = data[1] as? String {
                 self?.delegate.receivedMessage(name, msg: msg)
             }
         }
-        
         
         socket.on("playerMove") { [weak self] data, ack in
             if let name = data[0] as? String, let originX = data[1] as? Int, let originY = data[2] as? Int, let newX = data[3] as? Int, let newY = data[4] as? Int {
@@ -92,6 +100,8 @@ class SocketService {
             exit(0)
         }
         
-        socket.onAny { print("Got event: \($0.event), with items: \($0.items!)")}
+        socket.onAny {
+            print("Got event: \($0.event), with items: \($0.items!)")
+        }
     }
 }
