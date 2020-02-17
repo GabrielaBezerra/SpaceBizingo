@@ -15,7 +15,8 @@ protocol GameDelegate: class {
     func newTurn(_ name: String)
     func playerDidMove(_ name: String, from originIndex: Index, to newIndex: Index)
 
-    func didWin(_ name: String)
+    func didWin()
+    func didLose()
     
     func receivedMessage(_ name: String, msg: String)
     
@@ -85,9 +86,11 @@ class SocketService {
         }
         
         socket.on("win") { [weak self] data, ack in
-            if let name = data[0] as? String {
-                self?.delegate.didWin(name)
-            }
+            self?.delegate.didWin()
+        }
+        
+        socket.on("lose") { [weak self] data, ack in
+            self?.delegate.didLose()
         }
         
         socket.on("currentTurn") { [weak self] data, ack in

@@ -22,22 +22,24 @@ class GameViewController: UIViewController {
     @IBOutlet weak var stateMessageLabel: UILabel!
     
     //MARK: - Custom Alert
-    lazy var stateAlert: UIAlertController = {
-        let alert = UIAlertController(title: state.rawValue, message: nil, preferredStyle: .alert)
-        return alert
+    lazy var stateView: UIView = {
+        let view = UIView(frame: self.skView.frame)
+        view.backgroundColor = UIColor.init(white: 0, alpha: 0.5)
+        return view
     }()
     
     //MARK: - Socket Service Instatiation
     let socketService: SocketService = SocketService()
     
     //MARK: - GameState
-    var state: GameState! {
+    var state: GameState! = .awaitingConnection {
         didSet {
+            self.stateMessageLabel.text = state.rawValue
             switch state {
             case .yourTurn:
-                dismissStateAlert()
+                dismissStateView()
             default:
-                showStateAlert()
+                showStateView()
             }
         }
     }
@@ -62,26 +64,21 @@ class GameViewController: UIViewController {
             
             let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
-            let resignAction = UIAlertAction(title: "Resign", style: .destructive, handler: { (alert) in
-                //resign handler
-            })
-            
             let endTurnAction = UIAlertAction(title: "End Turn", style: .default, handler: { (alert) in
                 //endTurn handler
-                if let originIndex = self.gameScene.board.getSelectedTriangle()?.data.index {
-                    self.socketService.move(from: originIndex, to: Index(row: 0, column: 0))
+                if self.gameScene.board.hasMoved {
+                    self.socketService.move(from: self.gameScene.board.previousPos!, to: self.gameScene.board.newPos!)
+                    return
+                } else {
+                    let alert = UIAlertController(title: "Cannot skip move!", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
-            })
-            
-            let restartAction = UIAlertAction(title: "Request Restart Match", style: .destructive, handler: { (alert) in
-                //restart handler
             })
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
             actionSheet.addAction(endTurnAction)
-            actionSheet.addAction(restartAction)
-            actionSheet.addAction(resignAction)
             actionSheet.addAction(cancelAction)
             
             self.present(actionSheet, animated: true)
@@ -109,18 +106,20 @@ class GameViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    //MARK: - State Alert
-    func showStateAlert() {
-        self.present(stateAlert, animated: true, completion: nil)
+    //MARK: - State View
+    func showStateView() {
+        self.view.addSubview(stateView)
     }
     
-    func dismissStateAlert() {
-        stateAlert.dismiss(animated: true, completion: nil)
+    func dismissStateView() {
+        stateView.removeFromSuperview()
     }
     
     //MARK: - GameViewController default Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.stateMessageLabel.text = GameState.awaitingConnection.rawValue
         
         self.chatTextView.layoutManager.allowsNonContiguousLayout = false
         self.chatTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: -20, right: 10);
@@ -156,6 +155,11 @@ class GameViewController: UIViewController {
             }
         }
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showStateView()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -212,6 +216,9 @@ extension GameViewController: GameDelegate {
     }
     
     func newTurn(_ name: String) {
+        self.gameScene.board.hasMoved = false
+        self.gameScene.board.newPos = nil
+        self.gameScene.board.previousPos = nil
         if name == gameScene.player.rawValue {
             state = .yourTurn
         } else {
@@ -220,11 +227,17 @@ extension GameViewController: GameDelegate {
     }
     
     func playerDidMove(_ name: String, from originIndex: Index, to newIndex: Index) {
-        
+        gameScene.board.movePiece(from: originIndex, to: newIndex)
     }
     
-    func didWin(_ name: String) {
-        
+    func didWin() {
+        let alert = UIAlertController(title: "You Win", message: "Restart the App to play again!", preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func didLose() {
+        let alert = UIAlertController(title: "You Lose", message: "Restart the App to play again!", preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func receivedMessage(_ name: String, msg: String) {
@@ -244,70 +257,8 @@ extension GameViewController: GameDelegate {
     
     func youArePlayingAt(_ team: String) {
         gameScene.player = Player(rawValue: team) ?? .disconnected
+        self.playerNameLabel.text = "You are Team "+gameScene.player.rawValue.capitalized
         print("👾 You are player \(gameScene.player.rawValue)")
     }
     
-}
-
-extension NSMutableAttributedString {
-    var fontSize:CGFloat { return 14 }
-    var boldFont:UIFont { return UIFont(name: "Helvetica-Bold", size: fontSize) ?? UIFont.boldSystemFont(ofSize: fontSize) }
-    var normalFont:UIFont { return UIFont(name: "Helvetica-Regular", size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)}
-
-    func bold(_ value:String) -> NSMutableAttributedString {
-
-        let attributes:[NSAttributedString.Key : Any] = [
-            .font : boldFont
-        ]
-
-        self.append(NSAttributedString(string: value, attributes:attributes))
-        return self
-    }
-
-    func normal(_ value:String) -> NSMutableAttributedString {
-
-        let attributes:[NSAttributedString.Key : Any] = [
-            .font : normalFont,
-        ]
-
-        self.append(NSAttributedString(string: value, attributes:attributes))
-        return self
-    }
-    /* Other styling methods */
-    func orangeHighlight(_ value:String) -> NSMutableAttributedString {
-
-        let attributes:[NSAttributedString.Key : Any] = [
-            .font :  normalFont,
-            .foregroundColor : UIColor.white,
-            .backgroundColor : UIColor.orange
-        ]
-
-        self.append(NSAttributedString(string: value, attributes:attributes))
-        return self
-    }
-
-    func blackHighlight(_ value:String) -> NSMutableAttributedString {
-
-        let attributes:[NSAttributedString.Key : Any] = [
-            .font :  normalFont,
-            .foregroundColor : UIColor.white,
-            .backgroundColor : UIColor.black
-
-        ]
-
-        self.append(NSAttributedString(string: value, attributes:attributes))
-        return self
-    }
-
-    func underlined(_ value:String) -> NSMutableAttributedString {
-
-        let attributes:[NSAttributedString.Key : Any] = [
-            .font :  normalFont,
-            .underlineStyle : NSUnderlineStyle.single.rawValue
-
-        ]
-
-        self.append(NSAttributedString(string: value, attributes:attributes))
-        return self
-    }
 }

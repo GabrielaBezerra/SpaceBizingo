@@ -44,6 +44,10 @@ class Board {
     private var rowsData: [[TriangleState]] = []
     private var pieces: [Piece] = []
     
+    var hasMoved: Bool = false
+    var previousPos: Index?
+    var newPos: Index?
+
     func triangleDatas(of type: Player) -> [[TriangleState]] {
         return rowsData.compactMap { row in row.filter{ $0.type == type } }
     }
@@ -231,15 +235,24 @@ class Board {
     }
     
     func movePiece(from originIndex: Index, to newIndex: Index) {
+        if hasMoved, (originIndex != newPos || newIndex != previousPos), newPos != nil, previousPos != nil {
+            return
+        }
         guard
             let originTriangle = getTriangle(at: originIndex),
             let triangleAtNewPosition = getTriangle(at: newIndex),
-            let piece = getPiece(at: originIndex) else { return }
+            let piece = getPiece(at: originIndex) else {
+                return
+        }
         originTriangle.data.setEmpty()
         piece.removeFromBoard()
         if triangleAtNewPosition.data.isEmpty {
             placePiece(at: triangleAtNewPosition.data, captain: piece.isCaptain)
             triangleAtNewPosition.data.deselect()
+            
+            hasMoved = !hasMoved
+            previousPos = originIndex
+            newPos = newIndex
         }
     }
 

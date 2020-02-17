@@ -10,6 +10,7 @@
 		0638282423F4D99500012127 /* PieceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282323F4D99500012127 /* PieceDelegate.swift */; };
 		0638282723F4D9C600012127 /* TriangleStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282623F4D9C600012127 /* TriangleStateDelegate.swift */; };
 		0638282923F4E28E00012127 /* BoardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282823F4E28E00012127 /* BoardDelegate.swift */; };
+		0638282B23FA27E700012127 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282A23FA27E700012127 /* Extensions.swift */; };
 		0663A90423E30456007805C4 /* TriangleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90323E30456007805C4 /* TriangleState.swift */; };
 		0663A90623E30478007805C4 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90523E30478007805C4 /* Index.swift */; };
 		06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78623E2705A00CD2013 /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		0638282323F4D99500012127 /* PieceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDelegate.swift; sourceTree = "<group>"; };
 		0638282623F4D9C600012127 /* TriangleStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleStateDelegate.swift; sourceTree = "<group>"; };
 		0638282823F4E28E00012127 /* BoardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDelegate.swift; sourceTree = "<group>"; };
+		0638282A23FA27E700012127 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0663A90323E30456007805C4 /* TriangleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleState.swift; sourceTree = "<group>"; };
 		0663A90523E30478007805C4 /* Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
 		06EFF78323E2705A00CD2013 /* SpaceBizingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceBizingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 				0638282323F4D99500012127 /* PieceDelegate.swift */,
 				0638282623F4D9C600012127 /* TriangleStateDelegate.swift */,
 				0638282823F4E28E00012127 /* BoardDelegate.swift */,
+				0638282A23FA27E700012127 /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */,
 				06EFF7BB23E2A3A400CD2013 /* Board.swift in Sources */,
 				06EFF7CB23E76E4500CD2013 /* Message.swift in Sources */,
+				0638282B23FA27E700012127 /* Extensions.swift in Sources */,
 				06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */,
 				0638282923F4E28E00012127 /* BoardDelegate.swift in Sources */,
 				0638282723F4D9C600012127 /* TriangleStateDelegate.swift in Sources */,
