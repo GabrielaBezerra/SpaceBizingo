@@ -37,7 +37,7 @@ class SocketService {
     }
  
     init() {
-        manager = SocketManager(socketURL: URL(string: "http://localhost:3000")!, config: [.log(true), .compress])
+        manager = SocketManager(socketURL: URL(string: "https://bizingo-server.herokuapp.com")!, config: [.log(true), .compress])
         socket = manager.defaultSocket
         configSocket()
     }

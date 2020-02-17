@@ -57,7 +57,7 @@
 		0638282A23FA27E700012127 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0663A90323E30456007805C4 /* TriangleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleState.swift; sourceTree = "<group>"; };
 		0663A90523E30478007805C4 /* Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
-		06EFF78323E2705A00CD2013 /* SpaceBizingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceBizingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06EFF78323E2705A00CD2013 /* GreenBizingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenBizingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06EFF78623E2705A00CD2013 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06EFF78823E2705A00CD2013 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		06EFF78A23E2705A00CD2013 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		06EFF78423E2705A00CD2013 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06EFF78323E2705A00CD2013 /* SpaceBizingo.app */,
+				06EFF78323E2705A00CD2013 /* GreenBizingo.app */,
 				06EFF79D23E2705D00CD2013 /* SpaceBizingoTests.xctest */,
 				06EFF7A823E2705D00CD2013 /* SpaceBizingoUITests.xctest */,
 			);
@@ -280,7 +280,7 @@
 			);
 			name = SpaceBizingo;
 			productName = SpaceBizingo;
-			productReference = 06EFF78323E2705A00CD2013 /* SpaceBizingo.app */;
+			productReference = 06EFF78323E2705A00CD2013 /* GreenBizingo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		06EFF79C23E2705D00CD2013 /* SpaceBizingoTests */ = {
@@ -635,7 +635,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sharkberry.SpaceBizingo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GreenBizingo;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -654,7 +654,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sharkberry.SpaceBizingo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GreenBizingo;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

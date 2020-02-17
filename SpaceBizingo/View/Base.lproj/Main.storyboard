@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFW-pC-3e4">
-                                                <rect key="frame" x="10" y="61" width="394" height="139"/>
+                                                <rect key="frame" x="10" y="40.5" width="394" height="159.5"/>
                                                 <color key="backgroundColor" red="0.8209450841" green="0.93360137939999999" blue="0.85979455709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <string key="text" base64-UTF8="YES">
 Cg
@@ -40,14 +40,14 @@ Cg
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your turn to make a move!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ran-Kx-V1V">
-                                                <rect key="frame" x="161.5" y="10" width="242.5" height="41"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ran-Kx-V1V">
+                                                <rect key="frame" x="161.5" y="10" width="242.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You're playing with Bottoms" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-IH-4av">
-                                                <rect key="frame" x="20" y="10" width="120" height="41"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-IH-4av">
+                                                <rect key="frame" x="20" y="10" width="120" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="eu1-uQ-QID"/>
                                                 </constraints>
@@ -56,7 +56,7 @@ Cg
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBw-cR-eyj">
-                                                <rect key="frame" x="150" y="10" width="1.5" height="41"/>
+                                                <rect key="frame" x="150" y="10" width="1.5" height="20.5"/>
                                                 <color key="backgroundColor" red="0.8209450841" green="0.93360137939999999" blue="0.85979455709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="1.5" id="0Xk-ZW-xoH"/>
