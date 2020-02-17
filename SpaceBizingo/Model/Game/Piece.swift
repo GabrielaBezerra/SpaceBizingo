@@ -14,12 +14,14 @@ class Piece {
     weak var delegate: PieceDelegate?
     
     var node: SKShapeNode
+    let type: Player
     var isCaptain: Bool
     var index: Index
     var possibleMoves: [Index] = []
     
-    init(color: UIColor, position: CGPoint, captain: Bool = false, index: Index) {
+    init(color: UIColor, position: CGPoint, captain: Bool = false, index: Index, type: Player) {
         
+        self.type = type
         self.index = index
         self.isCaptain = captain
         

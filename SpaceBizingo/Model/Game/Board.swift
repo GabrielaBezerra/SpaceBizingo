@@ -39,10 +39,27 @@ struct Triangle {
 
 class Board {
     
+    weak var delegate: BoardDelegate!
+    
     private(set) var node: SKNode = SKNode()
     private var rowsNodes : [[SKShapeNode]] = []
     private var rowsData: [[TriangleState]] = []
+    
     private var pieces: [Piece] = []
+    var amountDeadTop: Int = 0 {
+        didSet {
+            if amountDeadTop > 0 {
+                delegate.gameOver(winner: .pointBottom)
+            }
+        }
+    }
+    var amountDeadBottom: Int = 0 {
+        didSet {
+            if amountDeadBottom > 0 {
+                delegate.gameOver(winner: .pointTop)
+            }
+        }
+    }
     
     var hasMoved: Bool = false
     var previousPos: Index?
@@ -146,7 +163,7 @@ class Board {
         let offsetY: CGFloat = triangle.type == .pointBottom ? 13 : -10
         if let tnode = getTriangle(at: triangle.index)?.node {
             let center = CGPoint(x: tnode.path!.boundingBox.midX, y: tnode.path!.boundingBox.midY + offsetY)
-            let piece = Piece(color: color, position: center, captain: captain, index: triangle.index)
+            let piece = Piece(color: color, position: center, captain: captain, index: triangle.index, type: triangle.type)
             
             piece.delegate = self
             self.pieces.append(piece)
@@ -256,21 +273,468 @@ class Board {
         }
     }
 
+    func verifyDeadPieces() {
+        rowsData.enumerated().forEach { rowIndex, row in
+            row.enumerated().forEach { columnIndex, triangleState in
+                if let piece = getPiece(at: triangleState.index) {
+                    
+                    if triangleState.type == .pointTop {
+                        
+                        if triangleState.index.row < 8 {
+                            if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let bottom = getPiece(at: Index(row: piece.index.row+1, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain || bottom.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column+1)) {
+                                
+                                if
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let bottom = getPiece(at: Index(row: piece.index.row+1, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (right.isCaptain || bottom.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let bottom = getPiece(at: Index(row: piece.index.row+1, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || bottom.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            }
+                            
+                        } else if triangleState.index.row == 8 {
+                            
+                            if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let bottom = getPiece(at: Index(row: piece.index.row+1, column: piece.index.column)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain || bottom.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column)) {
+                                
+                                if
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let bottom = getPiece(at: Index(row: piece.index.row+1, column: piece.index.column)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (right.isCaptain || bottom.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let bottom = getPiece(at: Index(row: piece.index.row+1, column: piece.index.column)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || bottom.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            }
+                            
+                        } else if triangleState.index.row == 9 {
+                        
+                            if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column-1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let bottom = getPiece(at: Index(row: piece.index.row+1, column: piece.index.column-1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain || bottom.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column-1)) {
+                                
+                                if
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let bottom = getPiece(at: Index(row: piece.index.row+1, column: piece.index.column-1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (right.isCaptain || bottom.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column-1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let bottom = getPiece(at: Index(row: piece.index.row+1, column: piece.index.column-1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || bottom.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            }
+                            
+                        } else if triangleState.index.row == 10 {
+                            
+                            if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadTop += 1
+                                    }
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                        
+                    } else if triangleState.type == .pointBottom {
+                        
+                        if triangleState.index.row < 9 {
+                            if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row-1, column: piece.index.column-1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let top = getPiece(at: Index(row: piece.index.row-1, column: piece.index.column-1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain || top.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column+1)) {
+                                
+                                if
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let top = getPiece(at: Index(row: piece.index.row-1, column: piece.index.column-1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (right.isCaptain || top.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row+1, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let top = getPiece(at: Index(row: piece.index.row-1, column: piece.index.column-1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || top.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            }
+                            
+                        } else if triangleState.index.row == 9 {
+                            
+                            if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row-1, column: piece.index.column)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let top = getPiece(at: Index(row: piece.index.row-1, column: piece.index.column)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain || top.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row-1, column: piece.index.column)) {
+                                
+                                if
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let top = getPiece(at: Index(row: piece.index.row-1, column: piece.index.column)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (right.isCaptain || top.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row-1, column: piece.index.column)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let top = getPiece(at: Index(row: piece.index.row-1, column: piece.index.column)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || top.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            }
+                            
+                        } else if triangleState.index.row == 10 {
+                            
+                            if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row-1, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let top = getPiece(at: Index(row: piece.index.row-1, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain || top.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row-1, column: piece.index.column+1)) {
+                                
+                                if
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)),
+                                    let top = getPiece(at: Index(row: piece.index.row-1, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (right.isCaptain || top.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row-1, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let top = getPiece(at: Index(row: piece.index.row-1, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || top.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            } else if
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                let _ = getTriangle(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                
+                                if
+                                    let left = getPiece(at: Index(row: piece.index.row, column: piece.index.column-1)),
+                                    let right = getPiece(at: Index(row: piece.index.row, column: piece.index.column+1)) {
+                                    
+                                    if !piece.isCaptain ||
+                                        (piece.isCaptain && (left.isCaptain || right.isCaptain)) {
+                                        //piece needs to die
+                                        piece.removeFromBoard()
+                                        amountDeadBottom += 1
+                                    }
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
+    
 }
 
 extension Board: TriangleStateDelegate {
-    
-    func didSetPiece(triangle: TriangleState) {
-        
-    }
-    
-    func didSetCaptain(triangle: TriangleState) {
-        
-    }
-    
-    func didDie(triangle: TriangleState) {
-        
-    }
     
     func didSelect(index: Index) {
         
@@ -366,6 +830,7 @@ extension Board: PieceDelegate {
     
     func pieceRemoved(from index: Index) {
         pieces = pieces.filter { $0.index != index }
+        getTriangle(at: index)?.data.setEmpty()
     }
     
 }

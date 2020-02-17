@@ -78,13 +78,13 @@ class TriangleState {
     func setPiece() {
         self.hasPiece = true
         //setColorHandler?(pieceColor)
-        delegate.didSetPiece(triangle: self)
+        //delegate.didSetPiece(triangle: self)
     }
     
     func setCaptain() {
         self.hasCaptain = true
         setColorHandler?(captainColor)
-        delegate.didSetCaptain(triangle: self)
+        //delegate.didSetCaptain(triangle: self)
     }
     
     func setEmpty() {

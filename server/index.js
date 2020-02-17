@@ -21,6 +21,10 @@ function Player(socket) {
     this.socket.on("playerMove", function (x, y, dx, dy) {
         self.game.playerMove(self, x, y, dx, dy)
     })
+
+    this.socket.on("gameOver", function(winner) {
+        self.game.over(winner)     
+    })
 }
 
 Player.prototype.joinGame = function (game) {
@@ -67,6 +71,22 @@ Game.prototype.addPlayer = function (player) {
     }
 }
 
+Game.prototype.over = function (winner) {
+    if (![null, undefined].includes(this.playerBottom)) {
+        if (this.playerBottom["name"] === winner) {
+            this.announceWin(this.playerBottom);
+        } else if (![null, undefined].includes(this.playerTop)) {
+            if (this.playerTop["name"] === winner) {
+                this.announceWin(this.playerTop);
+            }
+        }
+    } else if (![null, undefined].includes(this.playerTop)) {
+        if (this.playerTop["name"] === winner) {
+            this.announceWin(this.playerTop);
+        }
+    }
+}
+
 Game.prototype.announceWin = function (player) {
     if (this.playerBottom === player) {
         if (![null,undefined].includes(this.playerBottom)) {
@@ -106,9 +126,10 @@ Game.prototype.sendMessage = function (msg, name) {
 }
 
 Game.prototype.playerMove = function (player, originX, originY, destinyX, destinyY) {
-    if (player["name"] !== this.currentTurn) { //|| x >= 3 || y >= 3) {
-        return
-    }
+    // if (player["name"] !== this.currentTurn) { //|| x >= 3 || y >= 3) {
+    //     console.log("GODZILLA RETURNS", player["name"])
+    //     return
+    // }
     
     if (player["name"] === "bottom") {
         this.playerTop.socket.emit("playerMove", player["name"], originX, originY, destinyX, destinyY)

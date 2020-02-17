@@ -50,6 +50,10 @@ class SocketService {
         self.socket.emit("playerMove", originIndex.row, originIndex.column, newIndex.row, newIndex.column)
     }
     
+    func gameOver(winner: Player) {
+        self.socket.emit("gameOver", winner.rawValue)
+    }
+    
     func sendMessage(author: String, content: String) {
         self.socket.emit("chatMessage", content, author)
     }
@@ -97,10 +101,6 @@ class SocketService {
             if let name = data[0] as? String {
                 self?.delegate.newTurn(name)
             }
-        }
-        
-        socket.on("gameOver") {data, ack in
-            exit(0)
         }
         
         socket.onAny {

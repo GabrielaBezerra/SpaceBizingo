@@ -135,6 +135,8 @@ class GameViewController: UIViewController {
             // Get the SKScene from the loaded GKScene
             if let sceneNode = scene.rootNode as! GameScene? {
                 
+                sceneNode.board.delegate = self
+                
                 sceneNode.backgroundColor = self.view.backgroundColor!
                 
                 // Copy gameplay related content over to the scene
@@ -216,9 +218,13 @@ extension GameViewController: GameDelegate {
     }
     
     func newTurn(_ name: String) {
+        
+        self.gameScene.board.verifyDeadPieces()
+        
         self.gameScene.board.hasMoved = false
         self.gameScene.board.newPos = nil
         self.gameScene.board.previousPos = nil
+        
         if name == gameScene.player.rawValue {
             state = .yourTurn
         } else {
@@ -232,11 +238,15 @@ extension GameViewController: GameDelegate {
     
     func didWin() {
         let alert = UIAlertController(title: "You Win", message: "Restart the App to play again!", preferredStyle: .alert)
+        let exit = UIAlertAction(title: "Play Again", style: .default, handler: { _ in  })
+        alert.addAction(exit)
         self.present(alert, animated: true, completion: nil)
     }
     
     func didLose() {
         let alert = UIAlertController(title: "You Lose", message: "Restart the App to play again!", preferredStyle: .alert)
+        let exit = UIAlertAction(title: "Play Again", style: .default, handler: { _ in  })
+        alert.addAction(exit)
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -259,6 +269,15 @@ extension GameViewController: GameDelegate {
         gameScene.player = Player(rawValue: team) ?? .disconnected
         self.playerNameLabel.text = "You are Team "+gameScene.player.rawValue.capitalized
         print("👾 You are player \(gameScene.player.rawValue)")
+    }
+    
+}
+
+
+extension GameViewController: BoardDelegate {
+    
+    func gameOver(winner: Player) {
+        socketService.gameOver(winner: winner)
     }
     
 }

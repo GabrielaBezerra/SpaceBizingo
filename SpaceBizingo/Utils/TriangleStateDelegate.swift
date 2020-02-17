@@ -11,7 +11,4 @@ import Foundation
 protocol TriangleStateDelegate: class {
     func didSelect(index: Index)
     func didUnselect(index: Index)
-    func didSetPiece(triangle: TriangleState)
-    func didSetCaptain(triangle: TriangleState)
-    func didDie(triangle: TriangleState)
 }

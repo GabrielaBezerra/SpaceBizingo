@@ -8,8 +8,6 @@
 
 import Foundation
 
-protocol BoardDelegate {
-    func killPiecesIfNeeded()
-    func movePieceIfNeeded(from originIndex: Index, to newIndex: Index)
-    func gameDidOver(result: GameResult)
+protocol BoardDelegate: class {
+    func gameOver(winner: Player)
 }
