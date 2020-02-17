@@ -48,12 +48,11 @@ enum Player: String {
 enum GameResult {
     case topWin
     case bottomWin
-    case draw
 }
 
 enum GameState: String {
     case awaitingConnection = "Awaiting Connection from another Player"
-    case waiting = "Waiting for opponents move"
+    case waiting = "Waiting for the Opponent's Move"
     case yourTurn = "Make your Move!"
     case youWin = "You Win!"
     case youLose = "You Lose!"

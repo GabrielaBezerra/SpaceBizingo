@@ -1,7 +1,7 @@
 var app = require('http').createServer()
 
-app.listen(8900)
-console.log("Listening on 8900")
+app.listen(3000)
+console.log("Listening on 3000")
 
 function Player(socket) {
     var self = this
@@ -33,11 +33,6 @@ Player.prototype.joinGame = function (game) {
 
 function Game() {
     this.io = require('socket.io')(app)
-    // this.board = [
-    //     ["", "", ""],
-    //     ["", "", ""],
-    //     ["", "", ""]
-    // ]
     this.playerBottom = null
     this.playerTop = null
     this.currentTurn = "bottom"
@@ -116,21 +111,25 @@ Game.prototype.nullPlayer = function(player) {
 }
 
 Game.prototype.gameOver = function () {
-    this.playerBottom.socket.emit("gameOver")
-    this.playerTop.socket.emit("gameOver")
+    if (![null,undefined].includes(this.playerBottom)) {
+        this.playerBottom.socket.emit("gameOver")
+    }
+    if (![null,undefined].includes(this.playerTop)) {
+        this.playerTop.socket.emit("gameOver")
+    }
 }
 
 Game.prototype.sendMessage = function (msg, name) {
-    this.playerBottom.socket.emit('chatMessage', msg, name);
-    this.playerTop.socket.emit('chatMessage', msg, name);
+    if (![null,undefined].includes(this.playerBottom)) {
+        this.playerBottom.socket.emit('chatMessage', msg, name);
+    }
+    if (![null,undefined].includes(this.playerTop)) {
+        this.playerTop.socket.emit('chatMessage', msg, name);
+    }
 }
 
 Game.prototype.playerMove = function (player, originX, originY, destinyX, destinyY) {
-    // if (player["name"] !== this.currentTurn) { //|| x >= 3 || y >= 3) {
-    //     console.log("GODZILLA RETURNS", player["name"])
-    //     return
-    // }
-    
+
     if (player["name"] === "bottom") {
         this.playerTop.socket.emit("playerMove", player["name"], originX, originY, destinyX, destinyY)
     } else {

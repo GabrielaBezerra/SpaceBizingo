@@ -54,6 +54,7 @@ class GameViewController: UIViewController {
         if playerIsConnected() {
             if let content = self.textField.text, content.replacingOccurrences(of: " ", with: "") != "" {
                 socketService.sendMessage(author: socketService.name!, content: content)
+                self.textField.text?.removeAll()
                 self.view.endEditing(true)
             }
         }
@@ -76,9 +77,15 @@ class GameViewController: UIViewController {
                 }
             })
             
+            let resignAction = UIAlertAction(title: "Resign", style: .destructive) { (alert) in
+                let opponent = self.gameScene.player == .pointBottom ? Player.pointTop : Player.pointBottom
+                self.gameScene.board.delegate.gameOver(winner: opponent)
+            }
+            
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
             actionSheet.addAction(endTurnAction)
+            actionSheet.addAction(resignAction)
             actionSheet.addAction(cancelAction)
             
             self.present(actionSheet, animated: true)
@@ -90,7 +97,7 @@ class GameViewController: UIViewController {
     //MARK: - Connection Status Verification
     func playerIsConnected() -> Bool {
         if gameScene.player == .disconnected {
-            showAlert(text: "Server is Offline", buttonText: "Try Again") { alert in
+            showAlert(text: "Server is Unavailable", buttonText: "Try Again") { alert in
                 self.socketService.socket.connect()
             }
             return false
@@ -183,6 +190,14 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    //MARK: - Restart
+    func restart() {
+        socketService.restart()
+        viewDidLoad()
+        viewDidAppear(true)
+        self.chatTextView.text = "\n"
+    }
 }
 
 //MARK: - TextFieldDelegate
@@ -237,21 +252,20 @@ extension GameViewController: GameDelegate {
     }
     
     func didWin() {
-        let alert = UIAlertController(title: "You Win", message: "Restart the App to play again!", preferredStyle: .alert)
-        let exit = UIAlertAction(title: "Play Again", style: .default, handler: { _ in  })
+        let alert = UIAlertController(title: "You Win", message: "", preferredStyle: .alert)
+        let exit = UIAlertAction(title: "Play Again", style: .default, handler: { _ in self.restart() })
         alert.addAction(exit)
         self.present(alert, animated: true, completion: nil)
     }
     
     func didLose() {
-        let alert = UIAlertController(title: "You Lose", message: "Restart the App to play again!", preferredStyle: .alert)
-        let exit = UIAlertAction(title: "Play Again", style: .default, handler: { _ in  })
+        let alert = UIAlertController(title: "You Lose", message: "", preferredStyle: .alert)
+        let exit = UIAlertAction(title: "Play Again", style: .default, handler: { _ in self.restart() })
         alert.addAction(exit)
         self.present(alert, animated: true, completion: nil)
     }
     
     func receivedMessage(_ name: String, msg: String) {
-        //let string = "\n\(name): \(msg)"
 
         let mutAtt = NSMutableAttributedString(attributedString: chatTextView.attributedText)
         let attString = NSMutableAttributedString()

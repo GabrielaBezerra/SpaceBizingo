@@ -48,14 +48,14 @@ class Board {
     private var pieces: [Piece] = []
     var amountDeadTop: Int = 0 {
         didSet {
-            if amountDeadTop > 0 {
+            if amountDeadTop > 1 {
                 delegate.gameOver(winner: .pointBottom)
             }
         }
     }
     var amountDeadBottom: Int = 0 {
         didSet {
-            if amountDeadBottom > 0 {
+            if amountDeadBottom > 1 {
                 delegate.gameOver(winner: .pointTop)
             }
         }

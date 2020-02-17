@@ -37,12 +37,17 @@ class SocketService {
     }
  
     init() {
-        manager = SocketManager(socketURL: URL(string: "http://localhost:8900")!, config: [.log(true), .compress])
+        manager = SocketManager(socketURL: URL(string: "http://localhost:3000")!, config: [.log(true), .compress])
         socket = manager.defaultSocket
+        configSocket()
+    }
+    
+    func restart() {
+        socket.disconnect()
+        socket.connect()
     }
     
     private func start() {
-        configSocket()
         socket.connect()
     }
     
