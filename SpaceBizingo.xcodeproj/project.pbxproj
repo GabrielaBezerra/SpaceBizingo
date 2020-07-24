@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		0638282B23FA27E700012127 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282A23FA27E700012127 /* Extensions.swift */; };
 		0663A90423E30456007805C4 /* TriangleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90323E30456007805C4 /* TriangleState.swift */; };
 		0663A90623E30478007805C4 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90523E30478007805C4 /* Index.swift */; };
+		06AD6D1A24CAEF5B00430ED0 /* SwiftGRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D1924CAEF5B00430ED0 /* SwiftGRPC */; };
 		06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78623E2705A00CD2013 /* AppDelegate.swift */; };
 		06EFF78923E2705A00CD2013 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78823E2705A00CD2013 /* GameScene.sks */; };
 		06EFF78B23E2705A00CD2013 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78A23E2705A00CD2013 /* Actions.sks */; };
@@ -28,9 +29,8 @@
 		06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BF23E4B98D00CD2013 /* Constants.swift */; };
 		06EFF7C223E75A6C00CD2013 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C123E75A6C00CD2013 /* Piece.swift */; };
 		06EFF7C423E76D9600CD2013 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C323E76D9600CD2013 /* Chat.swift */; };
-		06EFF7C623E76D9D00CD2013 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* SocketService.swift */; };
+		06EFF7C623E76D9D00CD2013 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* NetworkLayer.swift */; };
 		06EFF7CB23E76E4500CD2013 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7CA23E76E4500CD2013 /* Message.swift */; };
-		092920D6DB7289CA301084AC /* Pods_SpaceBizingo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33282BD45B5502860EC2D8A4 /* Pods_SpaceBizingo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,11 +78,8 @@
 		06EFF7BF23E4B98D00CD2013 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		06EFF7C123E75A6C00CD2013 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		06EFF7C323E76D9600CD2013 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
-		06EFF7C523E76D9D00CD2013 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
+		06EFF7C523E76D9D00CD2013 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		06EFF7CA23E76E4500CD2013 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		0DC7A1A18CE2640D06BC4CC7 /* Pods-SpaceBizingo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceBizingo.release.xcconfig"; path = "Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo.release.xcconfig"; sourceTree = "<group>"; };
-		33282BD45B5502860EC2D8A4 /* Pods_SpaceBizingo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceBizingo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		934ECA6C6EA7A8BF09894CFD /* Pods-SpaceBizingo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceBizingo.debug.xcconfig"; path = "Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				092920D6DB7289CA301084AC /* Pods_SpaceBizingo.framework in Frameworks */,
+				06AD6D1A24CAEF5B00430ED0 /* SwiftGRPC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,8 +148,6 @@
 				06EFF7A023E2705D00CD2013 /* SpaceBizingoTests */,
 				06EFF7AB23E2705D00CD2013 /* SpaceBizingoUITests */,
 				06EFF78423E2705A00CD2013 /* Products */,
-				A326A3F8ADC6AF131FF77C98 /* Pods */,
-				ECC569D45AA67C546B80CA98 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,7 +213,7 @@
 		06EFF7C923E76DE200CD2013 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				06EFF7C523E76D9D00CD2013 /* SocketService.swift */,
+				06EFF7C523E76D9D00CD2013 /* NetworkLayer.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -244,23 +239,6 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
-		A326A3F8ADC6AF131FF77C98 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				934ECA6C6EA7A8BF09894CFD /* Pods-SpaceBizingo.debug.xcconfig */,
-				0DC7A1A18CE2640D06BC4CC7 /* Pods-SpaceBizingo.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		ECC569D45AA67C546B80CA98 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				33282BD45B5502860EC2D8A4 /* Pods_SpaceBizingo.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -268,17 +246,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06EFF7B123E2705D00CD2013 /* Build configuration list for PBXNativeTarget "SpaceBizingo" */;
 			buildPhases = (
-				D39FE3857953F03AE0483497 /* [CP] Check Pods Manifest.lock */,
 				06EFF77F23E2705A00CD2013 /* Sources */,
 				06EFF78023E2705A00CD2013 /* Frameworks */,
 				06EFF78123E2705A00CD2013 /* Resources */,
-				2D73D6F7855117350E56A148 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SpaceBizingo;
+			packageProductDependencies = (
+				06AD6D1924CAEF5B00430ED0 /* SwiftGRPC */,
+			);
 			productName = SpaceBizingo;
 			productReference = 06EFF78323E2705A00CD2013 /* GreenBizingo.app */;
 			productType = "com.apple.product-type.application";
@@ -351,6 +330,9 @@
 				Base,
 			);
 			mainGroup = 06EFF77A23E2705A00CD2013;
+			packageReferences = (
+				06AD6D1824CAEF5B00430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */,
+			);
 			productRefGroup = 06EFF78423E2705A00CD2013 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -391,48 +373,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		2D73D6F7855117350E56A148 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D39FE3857953F03AE0483497 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SpaceBizingo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		06EFF77F23E2705A00CD2013 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -453,7 +393,7 @@
 				06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */,
 				0638282923F4E28E00012127 /* BoardDelegate.swift in Sources */,
 				0638282723F4D9C600012127 /* TriangleStateDelegate.swift in Sources */,
-				06EFF7C623E76D9D00CD2013 /* SocketService.swift in Sources */,
+				06EFF7C623E76D9D00CD2013 /* NetworkLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,7 +564,6 @@
 		};
 		06EFF7B223E2705D00CD2013 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 934ECA6C6EA7A8BF09894CFD /* Pods-SpaceBizingo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -643,7 +582,6 @@
 		};
 		06EFF7B323E2705D00CD2013 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DC7A1A18CE2640D06BC4CC7 /* Pods-SpaceBizingo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -784,6 +722,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		06AD6D1824CAEF5B00430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/grpc/grpc-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		06AD6D1924CAEF5B00430ED0 /* SwiftGRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D1824CAEF5B00430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = SwiftGRPC;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 06EFF77B23E2705A00CD2013 /* Project object */;
 }

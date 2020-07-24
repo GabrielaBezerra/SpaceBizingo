@@ -29,7 +29,7 @@ class GameViewController: UIViewController {
     }()
     
     //MARK: - Socket Service Instatiation
-    let socketService: SocketService = SocketService()
+    let socketService: NetworkLayer = NetworkLayer()
     
     //MARK: - GameState
     var state: GameState! = .awaitingConnection {
@@ -98,7 +98,7 @@ class GameViewController: UIViewController {
     func playerIsConnected() -> Bool {
         if gameScene.player == .disconnected {
             showAlert(text: "Server is Unavailable", buttonText: "Try Again") { alert in
-                self.socketService.socket.connect()
+//                self.socketService.socket.connect()
             }
             return false
         }
