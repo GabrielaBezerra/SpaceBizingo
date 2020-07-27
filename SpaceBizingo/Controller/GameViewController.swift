@@ -28,6 +28,28 @@ class GameViewController: UIViewController {
         return view
     }()
     
+    private lazy var clientPromptAlert: UIAlertController = {
+        let alert = UIAlertController(title: "Insert address:port to Connect", message: "Your Adress is: \(GameServer.server.addressDescription)", preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "insert port"
+            //textField.keyboardType = .numberPad
+        }
+        
+        let connectAction = UIAlertAction(title: "Connect", style: .default) { (action) in
+            guard let text = alert.textFields?.first?.text else {
+                    print("🔥 No port was detected on connection prompt alert")
+                    return
+            }
+            
+            GameClientRunner.clientRunner.run(addressAndPort: text)
+        }
+        
+        alert.addAction(connectAction)
+        
+        return alert
+    }()
+    
     //MARK: - Socket Service Instatiation
     let socketService: NetworkLayer = NetworkLayer()
     
@@ -169,6 +191,7 @@ class GameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showStateView()
+        self.present(self.clientPromptAlert, animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

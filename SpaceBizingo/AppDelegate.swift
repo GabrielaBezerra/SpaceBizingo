@@ -13,9 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        DispatchQueue.global().async {
+            do {
+                try GameServer.server.run()
+                print("🎉 gRPC Server Initialized!")
+            } catch {
+                print("🔥 gRPC Server Error: ",error)
+            }
+        }
+        
         return true
     }
 

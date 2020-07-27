@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# .proto file path
+PROTO_FILE_PATH=$1 ;
+
+# proto imports path
+PROTO_PATH=$2 ;
+
+# grpc and pb swift out path to folder
+OUT_PATH_TO_FOLDER=$3 ;
+
+# plugin path to folder
+PLUGINS_PATH_TO_FOLDER=$4 ;
+
+echo -e "usage: ./generate-grpc-swift-from-proto <.proto file path> <.proto files folder path> <.grpc.swift and .pb.swift destiny folder path> <plugins folder path>\n";
+
+echo -e "protoc $PROTO_FILE_PATH --proto_path=$PROTO_PATH --plugin=$PLUGINS_PATH_TO_FOLDER/protoc-gen-swift --swift_opt=Visibility=Public --swift_out=$OUT_PATH_TO_FOLDER --plugin=$PLUGINS_PATH_TO_FOLDER/protoc-gen-grpc-swift --grpc-swift_opt=Visibility=Public --grpc-swift_out=$OUT_PATH_TO_FOLDER;"
+
+protoc $PROTO_FILE_PATH --proto_path=$PROTO_PATH --plugin=$PLUGINS_PATH_TO_FOLDER/protoc-gen-swift --swift_opt=Visibility=Public --swift_out=$OUT_PATH_TO_FOLDER --plugin=$PLUGINS_PATH_TO_FOLDER/protoc-gen-grpc-swift --grpc-swift_opt=Visibility=Public --grpc-swift_out=$OUT_PATH_TO_FOLDER;

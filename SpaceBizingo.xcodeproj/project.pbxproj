@@ -13,7 +13,59 @@
 		0638282B23FA27E700012127 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282A23FA27E700012127 /* Extensions.swift */; };
 		0663A90423E30456007805C4 /* TriangleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90323E30456007805C4 /* TriangleState.swift */; };
 		0663A90623E30478007805C4 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90523E30478007805C4 /* Index.swift */; };
-		06AD6D1A24CAEF5B00430ED0 /* SwiftGRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D1924CAEF5B00430ED0 /* SwiftGRPC */; };
+		06AD6D1C24CB037700430ED0 /* Game.proto in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D1B24CB037700430ED0 /* Game.proto */; };
+		06AD6D2024CB09D800430ED0 /* Game.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D1E24CB09D800430ED0 /* Game.pb.swift */; };
+		06AD6D2124CB09D800430ED0 /* Game.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D1F24CB09D800430ED0 /* Game.grpc.swift */; };
+		06AD6D2424CB0AC400430ED0 /* NIOTLS in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D2324CB0AC400430ED0 /* NIOTLS */; };
+		06AD6D2624CB0AC400430ED0 /* NIOWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D2524CB0AC400430ED0 /* NIOWebSocket */; };
+		06AD6D2824CB0AC400430ED0 /* _NIO1APIShims in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D2724CB0AC400430ED0 /* _NIO1APIShims */; };
+		06AD6D2A24CB0AC400430ED0 /* NIOFoundationCompat in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D2924CB0AC400430ED0 /* NIOFoundationCompat */; };
+		06AD6D2C24CB0AC400430ED0 /* NIOHTTP1 in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D2B24CB0AC400430ED0 /* NIOHTTP1 */; };
+		06AD6D2E24CB0AC400430ED0 /* NIOConcurrencyHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D2D24CB0AC400430ED0 /* NIOConcurrencyHelpers */; };
+		06AD6D3024CB0AC400430ED0 /* NIOTestUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D2F24CB0AC400430ED0 /* NIOTestUtils */; };
+		06AD6D3224CB0AC400430ED0 /* NIO in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D3124CB0AC400430ED0 /* NIO */; };
+		06AD6D3524CB0B3A00430ED0 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D3424CB0B3A00430ED0 /* GRPC */; };
+		06AD6D3724CB0B3A00430ED0 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D3624CB0B3A00430ED0 /* CGRPCZlib */; };
+		06AD6D3924CB0C8200430ED0 /* GameClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3824CB0C8200430ED0 /* GameClient.swift */; };
+		06AD6D3B24CB0C8A00430ED0 /* GameServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3A24CB0C8A00430ED0 /* GameServer.swift */; };
+		06AD6D3E24CB85BB00430ED0 /* GameServerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3D24CB85BA00430ED0 /* GameServerProvider.swift */; };
+		06AD6D4D24CB904A00430ED0 /* Game.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D1E24CB09D800430ED0 /* Game.pb.swift */; };
+		06AD6D4E24CB904A00430ED0 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78C23E2705A00CD2013 /* GameScene.swift */; };
+		06AD6D4F24CB904A00430ED0 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90523E30478007805C4 /* Index.swift */; };
+		06AD6D5024CB904A00430ED0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78E23E2705A00CD2013 /* GameViewController.swift */; };
+		06AD6D5124CB904A00430ED0 /* GameServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3A24CB0C8A00430ED0 /* GameServer.swift */; };
+		06AD6D5224CB904A00430ED0 /* GameClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3824CB0C8200430ED0 /* GameClient.swift */; };
+		06AD6D5324CB904A00430ED0 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C323E76D9600CD2013 /* Chat.swift */; };
+		06AD6D5424CB904A00430ED0 /* TriangleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */; };
+		06AD6D5524CB904A00430ED0 /* Game.proto in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D1B24CB037700430ED0 /* Game.proto */; };
+		06AD6D5624CB904A00430ED0 /* TriangleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90323E30456007805C4 /* TriangleState.swift */; };
+		06AD6D5724CB904A00430ED0 /* PieceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282323F4D99500012127 /* PieceDelegate.swift */; };
+		06AD6D5824CB904A00430ED0 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C123E75A6C00CD2013 /* Piece.swift */; };
+		06AD6D5924CB904A00430ED0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BF23E4B98D00CD2013 /* Constants.swift */; };
+		06AD6D5A24CB904A00430ED0 /* GameServerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3D24CB85BA00430ED0 /* GameServerProvider.swift */; };
+		06AD6D5B24CB904A00430ED0 /* Game.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D1F24CB09D800430ED0 /* Game.grpc.swift */; };
+		06AD6D5C24CB904A00430ED0 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BA23E2A3A400CD2013 /* Board.swift */; };
+		06AD6D5D24CB904A00430ED0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7CA23E76E4500CD2013 /* Message.swift */; };
+		06AD6D5E24CB904A00430ED0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282A23FA27E700012127 /* Extensions.swift */; };
+		06AD6D5F24CB904A00430ED0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78623E2705A00CD2013 /* AppDelegate.swift */; };
+		06AD6D6024CB904A00430ED0 /* BoardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282823F4E28E00012127 /* BoardDelegate.swift */; };
+		06AD6D6124CB904A00430ED0 /* TriangleStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282623F4D9C600012127 /* TriangleStateDelegate.swift */; };
+		06AD6D6224CB904A00430ED0 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* NetworkLayer.swift */; };
+		06AD6D6424CB904A00430ED0 /* NIOFoundationCompat in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4424CB904A00430ED0 /* NIOFoundationCompat */; };
+		06AD6D6524CB904A00430ED0 /* NIO in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4824CB904A00430ED0 /* NIO */; };
+		06AD6D6624CB904A00430ED0 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4924CB904A00430ED0 /* GRPC */; };
+		06AD6D6724CB904A00430ED0 /* _NIO1APIShims in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4324CB904A00430ED0 /* _NIO1APIShims */; };
+		06AD6D6824CB904A00430ED0 /* NIOTLS in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4024CB904A00430ED0 /* NIOTLS */; };
+		06AD6D6924CB904A00430ED0 /* NIOConcurrencyHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4624CB904A00430ED0 /* NIOConcurrencyHelpers */; };
+		06AD6D6A24CB904A00430ED0 /* NIOHTTP1 in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4524CB904A00430ED0 /* NIOHTTP1 */; };
+		06AD6D6B24CB904A00430ED0 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4B24CB904A00430ED0 /* CGRPCZlib */; };
+		06AD6D6C24CB904A00430ED0 /* NIOTestUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4724CB904A00430ED0 /* NIOTestUtils */; };
+		06AD6D6D24CB904A00430ED0 /* NIOWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4224CB904A00430ED0 /* NIOWebSocket */; };
+		06AD6D6F24CB904A00430ED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF79023E2705A00CD2013 /* Main.storyboard */; };
+		06AD6D7024CB904A00430ED0 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78823E2705A00CD2013 /* GameScene.sks */; };
+		06AD6D7124CB904A00430ED0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF79323E2705C00CD2013 /* Assets.xcassets */; };
+		06AD6D7224CB904A00430ED0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF79523E2705C00CD2013 /* LaunchScreen.storyboard */; };
+		06AD6D7324CB904A00430ED0 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78A23E2705A00CD2013 /* Actions.sks */; };
 		06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78623E2705A00CD2013 /* AppDelegate.swift */; };
 		06EFF78923E2705A00CD2013 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78823E2705A00CD2013 /* GameScene.sks */; };
 		06EFF78B23E2705A00CD2013 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78A23E2705A00CD2013 /* Actions.sks */; };
@@ -57,6 +109,14 @@
 		0638282A23FA27E700012127 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0663A90323E30456007805C4 /* TriangleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleState.swift; sourceTree = "<group>"; };
 		0663A90523E30478007805C4 /* Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
+		06AD6D1B24CB037700430ED0 /* Game.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = Game.proto; sourceTree = "<group>"; };
+		06AD6D1E24CB09D800430ED0 /* Game.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.pb.swift; sourceTree = "<group>"; };
+		06AD6D1F24CB09D800430ED0 /* Game.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.grpc.swift; sourceTree = "<group>"; };
+		06AD6D3824CB0C8200430ED0 /* GameClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClient.swift; sourceTree = "<group>"; };
+		06AD6D3A24CB0C8A00430ED0 /* GameServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServer.swift; sourceTree = "<group>"; };
+		06AD6D3D24CB85BA00430ED0 /* GameServerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServerProvider.swift; sourceTree = "<group>"; };
+		06AD6D7724CB904A00430ED0 /* GreenBizingoBottom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenBizingoBottom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06AD6D7824CB904A00430ED0 /* SpaceBizingoTop copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SpaceBizingoTop copy-Info.plist"; path = "/Users/gabi/Study/IFCE Projects/PPD/SpaceBizingo/SpaceBizingoTop copy-Info.plist"; sourceTree = "<absolute>"; };
 		06EFF78323E2705A00CD2013 /* GreenBizingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenBizingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06EFF78623E2705A00CD2013 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06EFF78823E2705A00CD2013 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -83,11 +143,37 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		06AD6D6324CB904A00430ED0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06AD6D6424CB904A00430ED0 /* NIOFoundationCompat in Frameworks */,
+				06AD6D6524CB904A00430ED0 /* NIO in Frameworks */,
+				06AD6D6624CB904A00430ED0 /* GRPC in Frameworks */,
+				06AD6D6724CB904A00430ED0 /* _NIO1APIShims in Frameworks */,
+				06AD6D6824CB904A00430ED0 /* NIOTLS in Frameworks */,
+				06AD6D6924CB904A00430ED0 /* NIOConcurrencyHelpers in Frameworks */,
+				06AD6D6A24CB904A00430ED0 /* NIOHTTP1 in Frameworks */,
+				06AD6D6B24CB904A00430ED0 /* CGRPCZlib in Frameworks */,
+				06AD6D6C24CB904A00430ED0 /* NIOTestUtils in Frameworks */,
+				06AD6D6D24CB904A00430ED0 /* NIOWebSocket in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		06EFF78023E2705A00CD2013 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06AD6D1A24CAEF5B00430ED0 /* SwiftGRPC in Frameworks */,
+				06AD6D2A24CB0AC400430ED0 /* NIOFoundationCompat in Frameworks */,
+				06AD6D3224CB0AC400430ED0 /* NIO in Frameworks */,
+				06AD6D3524CB0B3A00430ED0 /* GRPC in Frameworks */,
+				06AD6D2824CB0AC400430ED0 /* _NIO1APIShims in Frameworks */,
+				06AD6D2424CB0AC400430ED0 /* NIOTLS in Frameworks */,
+				06AD6D2E24CB0AC400430ED0 /* NIOConcurrencyHelpers in Frameworks */,
+				06AD6D2C24CB0AC400430ED0 /* NIOHTTP1 in Frameworks */,
+				06AD6D3724CB0B3A00430ED0 /* CGRPCZlib in Frameworks */,
+				06AD6D3024CB0AC400430ED0 /* NIOTestUtils in Frameworks */,
+				06AD6D2624CB0AC400430ED0 /* NIOWebSocket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,9 +208,9 @@
 		0663A90723E31E55007805C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				06EFF7BF23E4B98D00CD2013 /* Constants.swift */,
 				06EFF7CD23E76E5900CD2013 /* Game */,
 				06EFF7CC23E76E4B00CD2013 /* Chat */,
+				06EFF7BF23E4B98D00CD2013 /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -141,6 +227,27 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		06AD6D1D24CB038400430ED0 /* gRPC */ = {
+			isa = PBXGroup;
+			children = (
+				06AD6D3C24CB0C9000430ED0 /* Model */,
+				06AD6D3824CB0C8200430ED0 /* GameClient.swift */,
+				06AD6D3A24CB0C8A00430ED0 /* GameServer.swift */,
+				06AD6D3D24CB85BA00430ED0 /* GameServerProvider.swift */,
+			);
+			path = gRPC;
+			sourceTree = "<group>";
+		};
+		06AD6D3C24CB0C9000430ED0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				06AD6D1F24CB09D800430ED0 /* Game.grpc.swift */,
+				06AD6D1E24CB09D800430ED0 /* Game.pb.swift */,
+				06AD6D1B24CB037700430ED0 /* Game.proto */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		06EFF77A23E2705A00CD2013 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +255,7 @@
 				06EFF7A023E2705D00CD2013 /* SpaceBizingoTests */,
 				06EFF7AB23E2705D00CD2013 /* SpaceBizingoUITests */,
 				06EFF78423E2705A00CD2013 /* Products */,
+				06AD6D7824CB904A00430ED0 /* SpaceBizingoTop copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,6 +265,7 @@
 				06EFF78323E2705A00CD2013 /* GreenBizingo.app */,
 				06EFF79D23E2705D00CD2013 /* SpaceBizingoTests.xctest */,
 				06EFF7A823E2705D00CD2013 /* SpaceBizingoUITests.xctest */,
+				06AD6D7724CB904A00430ED0 /* GreenBizingoBottom.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +277,7 @@
 				06EFF78623E2705A00CD2013 /* AppDelegate.swift */,
 				0638282523F4D9A100012127 /* Utils */,
 				06EFF7C923E76DE200CD2013 /* Service */,
+				06AD6D1D24CB038400430ED0 /* gRPC */,
 				0663A90723E31E55007805C4 /* Model */,
 				0663A90823E31E74007805C4 /* View */,
 				06EFF7C823E76DBC00CD2013 /* Scene */,
@@ -242,9 +352,38 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		06EFF78223E2705A00CD2013 /* SpaceBizingo */ = {
+		06AD6D3F24CB904A00430ED0 /* SpaceBizingoBottom */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06EFF7B123E2705D00CD2013 /* Build configuration list for PBXNativeTarget "SpaceBizingo" */;
+			buildConfigurationList = 06AD6D7424CB904A00430ED0 /* Build configuration list for PBXNativeTarget "SpaceBizingoBottom" */;
+			buildPhases = (
+				06AD6D4C24CB904A00430ED0 /* Sources */,
+				06AD6D6324CB904A00430ED0 /* Frameworks */,
+				06AD6D6E24CB904A00430ED0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpaceBizingoBottom;
+			packageProductDependencies = (
+				06AD6D4024CB904A00430ED0 /* NIOTLS */,
+				06AD6D4224CB904A00430ED0 /* NIOWebSocket */,
+				06AD6D4324CB904A00430ED0 /* _NIO1APIShims */,
+				06AD6D4424CB904A00430ED0 /* NIOFoundationCompat */,
+				06AD6D4524CB904A00430ED0 /* NIOHTTP1 */,
+				06AD6D4624CB904A00430ED0 /* NIOConcurrencyHelpers */,
+				06AD6D4724CB904A00430ED0 /* NIOTestUtils */,
+				06AD6D4824CB904A00430ED0 /* NIO */,
+				06AD6D4924CB904A00430ED0 /* GRPC */,
+				06AD6D4B24CB904A00430ED0 /* CGRPCZlib */,
+			);
+			productName = SpaceBizingo;
+			productReference = 06AD6D7724CB904A00430ED0 /* GreenBizingoBottom.app */;
+			productType = "com.apple.product-type.application";
+		};
+		06EFF78223E2705A00CD2013 /* SpaceBizingoTop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06EFF7B123E2705D00CD2013 /* Build configuration list for PBXNativeTarget "SpaceBizingoTop" */;
 			buildPhases = (
 				06EFF77F23E2705A00CD2013 /* Sources */,
 				06EFF78023E2705A00CD2013 /* Frameworks */,
@@ -254,9 +393,18 @@
 			);
 			dependencies = (
 			);
-			name = SpaceBizingo;
+			name = SpaceBizingoTop;
 			packageProductDependencies = (
-				06AD6D1924CAEF5B00430ED0 /* SwiftGRPC */,
+				06AD6D2324CB0AC400430ED0 /* NIOTLS */,
+				06AD6D2524CB0AC400430ED0 /* NIOWebSocket */,
+				06AD6D2724CB0AC400430ED0 /* _NIO1APIShims */,
+				06AD6D2924CB0AC400430ED0 /* NIOFoundationCompat */,
+				06AD6D2B24CB0AC400430ED0 /* NIOHTTP1 */,
+				06AD6D2D24CB0AC400430ED0 /* NIOConcurrencyHelpers */,
+				06AD6D2F24CB0AC400430ED0 /* NIOTestUtils */,
+				06AD6D3124CB0AC400430ED0 /* NIO */,
+				06AD6D3424CB0B3A00430ED0 /* GRPC */,
+				06AD6D3624CB0B3A00430ED0 /* CGRPCZlib */,
 			);
 			productName = SpaceBizingo;
 			productReference = 06EFF78323E2705A00CD2013 /* GreenBizingo.app */;
@@ -331,13 +479,15 @@
 			);
 			mainGroup = 06EFF77A23E2705A00CD2013;
 			packageReferences = (
-				06AD6D1824CAEF5B00430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */,
+				06AD6D2224CB0AC400430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */,
+				06AD6D3324CB0B3900430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */,
 			);
 			productRefGroup = 06EFF78423E2705A00CD2013 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				06EFF78223E2705A00CD2013 /* SpaceBizingo */,
+				06EFF78223E2705A00CD2013 /* SpaceBizingoTop */,
+				06AD6D3F24CB904A00430ED0 /* SpaceBizingoBottom */,
 				06EFF79C23E2705D00CD2013 /* SpaceBizingoTests */,
 				06EFF7A723E2705D00CD2013 /* SpaceBizingoUITests */,
 			);
@@ -345,6 +495,18 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		06AD6D6E24CB904A00430ED0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06AD6D6F24CB904A00430ED0 /* Main.storyboard in Resources */,
+				06AD6D7024CB904A00430ED0 /* GameScene.sks in Resources */,
+				06AD6D7124CB904A00430ED0 /* Assets.xcassets in Resources */,
+				06AD6D7224CB904A00430ED0 /* LaunchScreen.storyboard in Resources */,
+				06AD6D7324CB904A00430ED0 /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		06EFF78123E2705A00CD2013 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -374,19 +536,54 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		06AD6D4C24CB904A00430ED0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06AD6D4D24CB904A00430ED0 /* Game.pb.swift in Sources */,
+				06AD6D4E24CB904A00430ED0 /* GameScene.swift in Sources */,
+				06AD6D4F24CB904A00430ED0 /* Index.swift in Sources */,
+				06AD6D5024CB904A00430ED0 /* GameViewController.swift in Sources */,
+				06AD6D5124CB904A00430ED0 /* GameServer.swift in Sources */,
+				06AD6D5224CB904A00430ED0 /* GameClient.swift in Sources */,
+				06AD6D5324CB904A00430ED0 /* Chat.swift in Sources */,
+				06AD6D5424CB904A00430ED0 /* TriangleNode.swift in Sources */,
+				06AD6D5524CB904A00430ED0 /* Game.proto in Sources */,
+				06AD6D5624CB904A00430ED0 /* TriangleState.swift in Sources */,
+				06AD6D5724CB904A00430ED0 /* PieceDelegate.swift in Sources */,
+				06AD6D5824CB904A00430ED0 /* Piece.swift in Sources */,
+				06AD6D5924CB904A00430ED0 /* Constants.swift in Sources */,
+				06AD6D5A24CB904A00430ED0 /* GameServerProvider.swift in Sources */,
+				06AD6D5B24CB904A00430ED0 /* Game.grpc.swift in Sources */,
+				06AD6D5C24CB904A00430ED0 /* Board.swift in Sources */,
+				06AD6D5D24CB904A00430ED0 /* Message.swift in Sources */,
+				06AD6D5E24CB904A00430ED0 /* Extensions.swift in Sources */,
+				06AD6D5F24CB904A00430ED0 /* AppDelegate.swift in Sources */,
+				06AD6D6024CB904A00430ED0 /* BoardDelegate.swift in Sources */,
+				06AD6D6124CB904A00430ED0 /* TriangleStateDelegate.swift in Sources */,
+				06AD6D6224CB904A00430ED0 /* NetworkLayer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		06EFF77F23E2705A00CD2013 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06AD6D2024CB09D800430ED0 /* Game.pb.swift in Sources */,
 				06EFF78D23E2705A00CD2013 /* GameScene.swift in Sources */,
 				0663A90623E30478007805C4 /* Index.swift in Sources */,
 				06EFF78F23E2705A00CD2013 /* GameViewController.swift in Sources */,
+				06AD6D3B24CB0C8A00430ED0 /* GameServer.swift in Sources */,
+				06AD6D3924CB0C8200430ED0 /* GameClient.swift in Sources */,
 				06EFF7C423E76D9600CD2013 /* Chat.swift in Sources */,
 				06EFF7BD23E2A3AF00CD2013 /* TriangleNode.swift in Sources */,
+				06AD6D1C24CB037700430ED0 /* Game.proto in Sources */,
 				0663A90423E30456007805C4 /* TriangleState.swift in Sources */,
 				0638282423F4D99500012127 /* PieceDelegate.swift in Sources */,
 				06EFF7C223E75A6C00CD2013 /* Piece.swift in Sources */,
 				06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */,
+				06AD6D3E24CB85BB00430ED0 /* GameServerProvider.swift in Sources */,
+				06AD6D2124CB09D800430ED0 /* Game.grpc.swift in Sources */,
 				06EFF7BB23E2A3A400CD2013 /* Board.swift in Sources */,
 				06EFF7CB23E76E4500CD2013 /* Message.swift in Sources */,
 				0638282B23FA27E700012127 /* Extensions.swift in Sources */,
@@ -418,12 +615,12 @@
 /* Begin PBXTargetDependency section */
 		06EFF79F23E2705D00CD2013 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 06EFF78223E2705A00CD2013 /* SpaceBizingo */;
+			target = 06EFF78223E2705A00CD2013 /* SpaceBizingoTop */;
 			targetProxy = 06EFF79E23E2705D00CD2013 /* PBXContainerItemProxy */;
 		};
 		06EFF7AA23E2705D00CD2013 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 06EFF78223E2705A00CD2013 /* SpaceBizingo */;
+			target = 06EFF78223E2705A00CD2013 /* SpaceBizingoTop */;
 			targetProxy = 06EFF7A923E2705D00CD2013 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -448,6 +645,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		06AD6D7524CB904A00430ED0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 526YR6WHWC;
+				INFOPLIST_FILE = "SpaceBizingoTop copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharkberry.SpaceBizingo;
+				PRODUCT_NAME = GreenBizingoBottom;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		06AD6D7624CB904A00430ED0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 526YR6WHWC;
+				INFOPLIST_FILE = "SpaceBizingoTop copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharkberry.SpaceBizingo;
+				PRODUCT_NAME = GreenBizingoBottom;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		06EFF7AF23E2705D00CD2013 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -616,7 +849,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpaceBizingo.app/SpaceBizingo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GreenBizingo.app/GreenBizingo";
 			};
 			name = Debug;
 		};
@@ -638,7 +871,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpaceBizingo.app/SpaceBizingo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GreenBizingo.app/GreenBizingo";
 			};
 			name = Release;
 		};
@@ -685,6 +918,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		06AD6D7424CB904A00430ED0 /* Build configuration list for PBXNativeTarget "SpaceBizingoBottom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06AD6D7524CB904A00430ED0 /* Debug */,
+				06AD6D7624CB904A00430ED0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		06EFF77E23E2705A00CD2013 /* Build configuration list for PBXProject "SpaceBizingo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -694,7 +936,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06EFF7B123E2705D00CD2013 /* Build configuration list for PBXNativeTarget "SpaceBizingo" */ = {
+		06EFF7B123E2705D00CD2013 /* Build configuration list for PBXNativeTarget "SpaceBizingoTop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06EFF7B223E2705D00CD2013 /* Debug */,
@@ -724,21 +966,140 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		06AD6D1824CAEF5B00430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
+		06AD6D2224CB0AC400430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/grpc/grpc-swift";
+			repositoryURL = "https://github.com/apple/swift-nio";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.11.0;
+				minimumVersion = 2.19.0;
+			};
+		};
+		06AD6D3324CB0B3900430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/grpc/grpc-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = "1.0.0-alpha.12";
+			};
+		};
+		06AD6D4124CB904A00430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-nio";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.19.0;
+			};
+		};
+		06AD6D4A24CB904A00430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/grpc/grpc-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = "1.0.0-alpha.12";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		06AD6D1924CAEF5B00430ED0 /* SwiftGRPC */ = {
+		06AD6D2324CB0AC400430ED0 /* NIOTLS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 06AD6D1824CAEF5B00430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */;
-			productName = SwiftGRPC;
+			package = 06AD6D2224CB0AC400430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOTLS;
+		};
+		06AD6D2524CB0AC400430ED0 /* NIOWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D2224CB0AC400430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOWebSocket;
+		};
+		06AD6D2724CB0AC400430ED0 /* _NIO1APIShims */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D2224CB0AC400430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = _NIO1APIShims;
+		};
+		06AD6D2924CB0AC400430ED0 /* NIOFoundationCompat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D2224CB0AC400430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOFoundationCompat;
+		};
+		06AD6D2B24CB0AC400430ED0 /* NIOHTTP1 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D2224CB0AC400430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOHTTP1;
+		};
+		06AD6D2D24CB0AC400430ED0 /* NIOConcurrencyHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D2224CB0AC400430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOConcurrencyHelpers;
+		};
+		06AD6D2F24CB0AC400430ED0 /* NIOTestUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D2224CB0AC400430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOTestUtils;
+		};
+		06AD6D3124CB0AC400430ED0 /* NIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D2224CB0AC400430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIO;
+		};
+		06AD6D3424CB0B3A00430ED0 /* GRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D3324CB0B3900430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = GRPC;
+		};
+		06AD6D3624CB0B3A00430ED0 /* CGRPCZlib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D3324CB0B3900430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = CGRPCZlib;
+		};
+		06AD6D4024CB904A00430ED0 /* NIOTLS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D4124CB904A00430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOTLS;
+		};
+		06AD6D4224CB904A00430ED0 /* NIOWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D4124CB904A00430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOWebSocket;
+		};
+		06AD6D4324CB904A00430ED0 /* _NIO1APIShims */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D4124CB904A00430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = _NIO1APIShims;
+		};
+		06AD6D4424CB904A00430ED0 /* NIOFoundationCompat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D4124CB904A00430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOFoundationCompat;
+		};
+		06AD6D4524CB904A00430ED0 /* NIOHTTP1 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D4124CB904A00430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOHTTP1;
+		};
+		06AD6D4624CB904A00430ED0 /* NIOConcurrencyHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D4124CB904A00430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOConcurrencyHelpers;
+		};
+		06AD6D4724CB904A00430ED0 /* NIOTestUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D4124CB904A00430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIOTestUtils;
+		};
+		06AD6D4824CB904A00430ED0 /* NIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D4124CB904A00430ED0 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIO;
+		};
+		06AD6D4924CB904A00430ED0 /* GRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D4A24CB904A00430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = GRPC;
+		};
+		06AD6D4B24CB904A00430ED0 /* CGRPCZlib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06AD6D4A24CB904A00430ED0 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = CGRPCZlib;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

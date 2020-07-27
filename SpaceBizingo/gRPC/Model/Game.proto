@@ -1,0 +1,24 @@
+
+syntax = "proto3";
+
+service Game {
+    
+    rpc ConnectTo(ConnectionRequest) returns (ConnectionResult) {}
+    rpc SendMessage(ChatMessage) returns (ChatMessage) {}
+    
+};
+
+message ConnectionRequest {
+    string ip = 1;
+    int32 port = 2;
+};
+
+message ConnectionResult {
+    bool success = 1;
+    string description = 2;
+};
+
+message ChatMessage {
+    string author = 1;
+    string content = 2;
+};
