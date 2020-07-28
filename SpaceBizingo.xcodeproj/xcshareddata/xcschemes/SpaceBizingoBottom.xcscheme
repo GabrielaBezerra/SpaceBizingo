@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "06AD6D3F24CB904A00430ED0"
-               BuildableName = "SpaceBizingoBottom.app"
+               BuildableName = "GreenBizingoBottom.app"
                BlueprintName = "SpaceBizingoBottom"
                ReferencedContainer = "container:SpaceBizingo.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06AD6D3F24CB904A00430ED0"
-            BuildableName = "SpaceBizingoBottom.app"
+            BuildableName = "GreenBizingoBottom.app"
             BlueprintName = "SpaceBizingoBottom"
             ReferencedContainer = "container:SpaceBizingo.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06AD6D3F24CB904A00430ED0"
-            BuildableName = "SpaceBizingoBottom.app"
+            BuildableName = "GreenBizingoBottom.app"
             BlueprintName = "SpaceBizingoBottom"
             ReferencedContainer = "container:SpaceBizingo.xcodeproj">
          </BuildableReference>

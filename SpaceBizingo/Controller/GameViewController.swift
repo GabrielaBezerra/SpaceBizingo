@@ -28,12 +28,34 @@ class GameViewController: UIViewController {
         return view
     }()
     
-    private lazy var clientPromptAlert: UIAlertController = {
-        let alert = UIAlertController(title: "Insert address:port to Connect", message: "Your Adress is: \(GameServer.server.addressDescription)", preferredStyle: .alert)
+    private lazy var createOrEnterAlert: UIAlertController = {
+        let alert = UIAlertController(title: "Welcome to Green Bizingo", message: "", preferredStyle: .alert)
+        
+        let enterAction = UIAlertAction(title: "Enter Room", style: .default) { [unowned self] (action) in
+            self.present(self.enterRoomPromptAlert, animated: true, completion: nil)
+        }
+        
+        let createAction = UIAlertAction(title: "Create Room", style: .default) { [unowned self]( action) in
+            self.present(self.createRoomAlert, animated: true, completion: nil)
+        }
+        
+        alert.addAction(createAction)
+        alert.addAction(enterAction)
+        
+        return alert
+    }()
+    
+    private lazy var createRoomAlert: UIAlertController = {
+        let alert = UIAlertController(title: "Your Code is: \(GRPCWrapper.shared.server.addressDescription)", message: "Send this code to the player you want to invite to your room.", preferredStyle: .alert)
+        return alert
+    }()
+    
+    private lazy var enterRoomPromptAlert: UIAlertController = {
+        let alert = UIAlertController(title: "Insert address:port to Connect", message: "", preferredStyle: .alert)
         
         alert.addTextField { (textField) in
             textField.placeholder = "insert port"
-            //textField.keyboardType = .numberPad
+            textField.keyboardType = .default
         }
         
         let connectAction = UIAlertAction(title: "Connect", style: .default) { (action) in
@@ -42,7 +64,13 @@ class GameViewController: UIViewController {
                     return
             }
             
-            GameClientRunner.clientRunner.run(addressAndPort: text)
+            GRPCWrapper.shared.runner.run(addressAndPort: text, delegate: self, handler: { serverIP, serverPort in
+                GRPCWrapper.shared.connectTo(ip: serverIP, port: serverPort) { (success, description) in
+                    print("connectToReply handler callback", success ?? "nil", description ?? "nil")
+                        self.youArePlayingAt("top")
+                        self.didStart()
+                }
+            })
         }
         
         alert.addAction(connectAction)
@@ -56,13 +84,15 @@ class GameViewController: UIViewController {
     //MARK: - GameState
     var state: GameState! = .awaitingConnection {
         didSet {
-            self.stateMessageLabel.text = state.rawValue
+            
+            self.stateMessageLabel.text = self.state.rawValue
             switch state {
             case .yourTurn:
                 dismissStateView()
             default:
                 showStateView()
             }
+            
         }
     }
     
@@ -191,7 +221,7 @@ class GameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showStateView()
-        self.present(self.clientPromptAlert, animated: true, completion: nil)
+        self.present(self.createOrEnterAlert, animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -248,10 +278,11 @@ extension GameViewController: UITextFieldDelegate {
 extension GameViewController: GameDelegate {
     
     func didStart() {
-        if gameScene.player == .pointBottom {
-            state = .yourTurn
+        if self.gameScene.player == .pointBottom {
+            self.state = .yourTurn
+            self.createRoomAlert.dismiss(animated: true, completion: nil)
         } else {
-            state = .waiting
+            self.state = .waiting
         }
     }
     
@@ -303,9 +334,11 @@ extension GameViewController: GameDelegate {
     }
     
     func youArePlayingAt(_ team: String) {
-        gameScene.player = Player(rawValue: team) ?? .disconnected
-        self.playerNameLabel.text = "You are Team "+gameScene.player.rawValue.capitalized
-        print("👾 You are player \(gameScene.player.rawValue)")
+        self.gameScene.player = Player(rawValue: team) ?? .disconnected
+        
+        print("👾 You are player \(self.gameScene.player.rawValue)")
+        
+        self.playerNameLabel.text = "You are Team "+self.gameScene.player.rawValue.capitalized
     }
     
 }

@@ -13,14 +13,27 @@ import NIOConcurrencyHelpers
 
 class GameServerProvider: GameProvider {
     
+    weak var delegate: GameDelegate!
+    
+    init(delegate: GameDelegate) {
+        self.delegate = delegate
+    }
+    
     func connectTo(request: ConnectionRequest, context: StatusOnlyCallContext) -> EventLoopFuture<ConnectionResult> {
         
         print("connectTo Request: \(request.ip):\(request.port)")
         
         let result = ConnectionResult.with {
             $0.success = true
-            $0.description_p = "Deu bom!"
+            $0.description_p = "\(GRPCWrapper.shared.server.ip):\(GRPCWrapper.shared.server.serverPort)"
         }
+        
+        GRPCWrapper.shared.runner.run(addressAndPort: "\(request.ip):\(request.port)", delegate: self.delegate, handler: { ip, port in
+            DispatchQueue.main.async {
+                self.delegate.youArePlayingAt("bottom")
+                self.delegate.didStart()
+            }
+        })
         
         return context.eventLoop.makeSucceededFuture(result)
     }

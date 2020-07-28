@@ -11,6 +11,8 @@
 		0638282723F4D9C600012127 /* TriangleStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282623F4D9C600012127 /* TriangleStateDelegate.swift */; };
 		0638282923F4E28E00012127 /* BoardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282823F4E28E00012127 /* BoardDelegate.swift */; };
 		0638282B23FA27E700012127 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282A23FA27E700012127 /* Extensions.swift */; };
+		066301F224CF918500E835B2 /* GRPCWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066301F124CF918500E835B2 /* GRPCWrapper.swift */; };
+		066301F324CF918500E835B2 /* GRPCWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066301F124CF918500E835B2 /* GRPCWrapper.swift */; };
 		0663A90423E30456007805C4 /* TriangleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90323E30456007805C4 /* TriangleState.swift */; };
 		0663A90623E30478007805C4 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90523E30478007805C4 /* Index.swift */; };
 		06AD6D1C24CB037700430ED0 /* Game.proto in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D1B24CB037700430ED0 /* Game.proto */; };
@@ -26,7 +28,7 @@
 		06AD6D3224CB0AC400430ED0 /* NIO in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D3124CB0AC400430ED0 /* NIO */; };
 		06AD6D3524CB0B3A00430ED0 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D3424CB0B3A00430ED0 /* GRPC */; };
 		06AD6D3724CB0B3A00430ED0 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D3624CB0B3A00430ED0 /* CGRPCZlib */; };
-		06AD6D3924CB0C8200430ED0 /* GameClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3824CB0C8200430ED0 /* GameClient.swift */; };
+		06AD6D3924CB0C8200430ED0 /* GameClientRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3824CB0C8200430ED0 /* GameClientRunner.swift */; };
 		06AD6D3B24CB0C8A00430ED0 /* GameServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3A24CB0C8A00430ED0 /* GameServer.swift */; };
 		06AD6D3E24CB85BB00430ED0 /* GameServerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3D24CB85BA00430ED0 /* GameServerProvider.swift */; };
 		06AD6D4D24CB904A00430ED0 /* Game.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D1E24CB09D800430ED0 /* Game.pb.swift */; };
@@ -34,7 +36,7 @@
 		06AD6D4F24CB904A00430ED0 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90523E30478007805C4 /* Index.swift */; };
 		06AD6D5024CB904A00430ED0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78E23E2705A00CD2013 /* GameViewController.swift */; };
 		06AD6D5124CB904A00430ED0 /* GameServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3A24CB0C8A00430ED0 /* GameServer.swift */; };
-		06AD6D5224CB904A00430ED0 /* GameClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3824CB0C8200430ED0 /* GameClient.swift */; };
+		06AD6D5224CB904A00430ED0 /* GameClientRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D3824CB0C8200430ED0 /* GameClientRunner.swift */; };
 		06AD6D5324CB904A00430ED0 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C323E76D9600CD2013 /* Chat.swift */; };
 		06AD6D5424CB904A00430ED0 /* TriangleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */; };
 		06AD6D5524CB904A00430ED0 /* Game.proto in Sources */ = {isa = PBXBuildFile; fileRef = 06AD6D1B24CB037700430ED0 /* Game.proto */; };
@@ -107,12 +109,13 @@
 		0638282623F4D9C600012127 /* TriangleStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleStateDelegate.swift; sourceTree = "<group>"; };
 		0638282823F4E28E00012127 /* BoardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDelegate.swift; sourceTree = "<group>"; };
 		0638282A23FA27E700012127 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		066301F124CF918500E835B2 /* GRPCWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCWrapper.swift; sourceTree = "<group>"; };
 		0663A90323E30456007805C4 /* TriangleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleState.swift; sourceTree = "<group>"; };
 		0663A90523E30478007805C4 /* Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
 		06AD6D1B24CB037700430ED0 /* Game.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = Game.proto; sourceTree = "<group>"; };
 		06AD6D1E24CB09D800430ED0 /* Game.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.pb.swift; sourceTree = "<group>"; };
 		06AD6D1F24CB09D800430ED0 /* Game.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.grpc.swift; sourceTree = "<group>"; };
-		06AD6D3824CB0C8200430ED0 /* GameClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClient.swift; sourceTree = "<group>"; };
+		06AD6D3824CB0C8200430ED0 /* GameClientRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClientRunner.swift; sourceTree = "<group>"; };
 		06AD6D3A24CB0C8A00430ED0 /* GameServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServer.swift; sourceTree = "<group>"; };
 		06AD6D3D24CB85BA00430ED0 /* GameServerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServerProvider.swift; sourceTree = "<group>"; };
 		06AD6D7724CB904A00430ED0 /* GreenBizingoBottom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenBizingoBottom.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,9 +234,10 @@
 			isa = PBXGroup;
 			children = (
 				06AD6D3C24CB0C9000430ED0 /* Model */,
-				06AD6D3824CB0C8200430ED0 /* GameClient.swift */,
+				06AD6D3824CB0C8200430ED0 /* GameClientRunner.swift */,
 				06AD6D3A24CB0C8A00430ED0 /* GameServer.swift */,
 				06AD6D3D24CB85BA00430ED0 /* GameServerProvider.swift */,
+				066301F124CF918500E835B2 /* GRPCWrapper.swift */,
 			);
 			path = gRPC;
 			sourceTree = "<group>";
@@ -545,7 +549,7 @@
 				06AD6D4F24CB904A00430ED0 /* Index.swift in Sources */,
 				06AD6D5024CB904A00430ED0 /* GameViewController.swift in Sources */,
 				06AD6D5124CB904A00430ED0 /* GameServer.swift in Sources */,
-				06AD6D5224CB904A00430ED0 /* GameClient.swift in Sources */,
+				06AD6D5224CB904A00430ED0 /* GameClientRunner.swift in Sources */,
 				06AD6D5324CB904A00430ED0 /* Chat.swift in Sources */,
 				06AD6D5424CB904A00430ED0 /* TriangleNode.swift in Sources */,
 				06AD6D5524CB904A00430ED0 /* Game.proto in Sources */,
@@ -553,6 +557,7 @@
 				06AD6D5724CB904A00430ED0 /* PieceDelegate.swift in Sources */,
 				06AD6D5824CB904A00430ED0 /* Piece.swift in Sources */,
 				06AD6D5924CB904A00430ED0 /* Constants.swift in Sources */,
+				066301F324CF918500E835B2 /* GRPCWrapper.swift in Sources */,
 				06AD6D5A24CB904A00430ED0 /* GameServerProvider.swift in Sources */,
 				06AD6D5B24CB904A00430ED0 /* Game.grpc.swift in Sources */,
 				06AD6D5C24CB904A00430ED0 /* Board.swift in Sources */,
@@ -574,7 +579,7 @@
 				0663A90623E30478007805C4 /* Index.swift in Sources */,
 				06EFF78F23E2705A00CD2013 /* GameViewController.swift in Sources */,
 				06AD6D3B24CB0C8A00430ED0 /* GameServer.swift in Sources */,
-				06AD6D3924CB0C8200430ED0 /* GameClient.swift in Sources */,
+				06AD6D3924CB0C8200430ED0 /* GameClientRunner.swift in Sources */,
 				06EFF7C423E76D9600CD2013 /* Chat.swift in Sources */,
 				06EFF7BD23E2A3AF00CD2013 /* TriangleNode.swift in Sources */,
 				06AD6D1C24CB037700430ED0 /* Game.proto in Sources */,
@@ -582,6 +587,7 @@
 				0638282423F4D99500012127 /* PieceDelegate.swift in Sources */,
 				06EFF7C223E75A6C00CD2013 /* Piece.swift in Sources */,
 				06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */,
+				066301F224CF918500E835B2 /* GRPCWrapper.swift in Sources */,
 				06AD6D3E24CB85BB00430ED0 /* GameServerProvider.swift in Sources */,
 				06AD6D2124CB09D800430ED0 /* Game.grpc.swift in Sources */,
 				06EFF7BB23E2A3A400CD2013 /* Board.swift in Sources */,

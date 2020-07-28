@@ -14,10 +14,6 @@ import SwiftProtobuf
 
 class GameServer {
     
-    static let server: GameServer = GameServer()
-    
-    private init() { }
-       
     var ip: String {
         return "localhost"
         //getIPAddress()!
@@ -30,7 +26,7 @@ class GameServer {
         "\(self.ip):\(serverPort)"
     }
     
-    func run() throws {
+    func run(delegate: GameDelegate, handler: () -> Void) {
         // Create an event loop group for the server to run on.
         let group = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
         defer {
@@ -38,7 +34,7 @@ class GameServer {
         }
         
         // Create a provider using the features we read.
-        let provider = GameServerProvider()
+        let provider = GameServerProvider(delegate: delegate)
         
         // Start the server and print its address once it has started.
         let server = Server.insecure(group: group)
@@ -53,6 +49,9 @@ class GameServer {
             }
             print("🤖 server started on port \(address!.port!)")
         }
+                //print("🤖 client just connected from port \(port)")
+        
+        handler()
         
         // Wait on the server's `onClose` future to stop the program from exiting.
         _ = try? server.flatMap { $0.onClose }.wait()
