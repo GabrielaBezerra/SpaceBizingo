@@ -64,13 +64,17 @@ class GameViewController: UIViewController {
                     return
             }
             
-            GRPCWrapper.shared.runner.run(addressAndPort: text, delegate: self, handler: { serverIP, serverPort in
+            GRPCWrapper.shared.runClient(addressAndPort: text, delegate: self, handler: { serverIP, serverPort in
                 GRPCWrapper.shared.connectTo(ip: serverIP, port: serverPort) { (success, description) in
-                    print("connectToReply handler callback", success ?? "nil", description ?? "nil")
+                    
+                    DispatchQueue.main.async {
+                        print("connectToReply handler callback", success ?? "nil", description ?? "nil")
                         self.youArePlayingAt("top")
                         self.didStart()
+                    }
                 }
             })
+            
         }
         
         alert.addAction(connectAction)
@@ -105,9 +109,14 @@ class GameViewController: UIViewController {
     @IBAction func sendAction(_ sender: UIButton) {
         if playerIsConnected() {
             if let content = self.textField.text, content.replacingOccurrences(of: " ", with: "") != "" {
-                socketService.sendMessage(author: socketService.name!, content: content)
-                self.textField.text?.removeAll()
-                self.view.endEditing(true)
+                //socketService.sendMessage(author: socketService.name!, content: content)
+                GRPCWrapper.shared.sendMessage(author: gameScene.player.rawValue.capitalized, content: content) { (replyAuthor, replyContent) in
+                    if let replyAuthor = replyAuthor, let replyContent = replyContent {
+                            self.receivedMessage(replyAuthor, msg: replyContent)
+                    }
+                    self.textField.text?.removeAll()
+                    self.view.endEditing(true)
+                }
             }
         }
     }
@@ -320,17 +329,19 @@ extension GameViewController: GameDelegate {
     }
     
     func receivedMessage(_ name: String, msg: String) {
-
-        let mutAtt = NSMutableAttributedString(attributedString: chatTextView.attributedText)
-        let attString = NSMutableAttributedString()
-            .bold("\(name.capitalized): ")
-            .normal("\(msg)\n")
-        mutAtt.insert(attString, at: mutAtt.length-1)
-        self.chatTextView.attributedText = mutAtt
-       
-        let stringLength: Int = self.chatTextView.text.count
-        let range = NSMakeRange(stringLength-1, 1)
-        self.chatTextView.scrollRangeToVisible(range)
+        DispatchQueue.main.async {
+            let mutAtt = NSMutableAttributedString(attributedString: self.chatTextView.attributedText)
+            let attString = NSMutableAttributedString()
+                .bold("\(name.capitalized): ")
+                .normal("\(msg)\n")
+            mutAtt.insert(attString, at: mutAtt.length-1)
+            self.chatTextView.attributedText = mutAtt
+            
+            let stringLength: Int = self.chatTextView.text.count
+            let range = NSMakeRange(stringLength-1, 1)
+            
+            self.chatTextView.scrollRangeToVisible(range)
+        }
     }
     
     func youArePlayingAt(_ team: String) {

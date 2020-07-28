@@ -22,6 +22,8 @@ class GameServer {
     
     var serverPort: Int = 0
     
+    var provider: GameServerProvider? = nil
+    
     var addressDescription: String {
         "\(self.ip):\(serverPort)"
     }
@@ -40,6 +42,8 @@ class GameServer {
         let server = Server.insecure(group: group)
             .withServiceProviders([provider])
             .bind(host: "localhost", port: serverPort)
+
+        self.provider = provider
         
         server.map {
             $0.channel.localAddress

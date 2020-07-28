@@ -19,6 +19,10 @@ class GameServerProvider: GameProvider {
         self.delegate = delegate
     }
     
+    let receiveMessage: (String, String, GameDelegate) -> () = { author, content, delegate in
+            delegate.receivedMessage(author, msg: content)
+    }
+    
     func connectTo(request: ConnectionRequest, context: StatusOnlyCallContext) -> EventLoopFuture<ConnectionResult> {
         
         print("connectTo Request: \(request.ip):\(request.port)")
@@ -28,7 +32,7 @@ class GameServerProvider: GameProvider {
             $0.description_p = "\(GRPCWrapper.shared.server.ip):\(GRPCWrapper.shared.server.serverPort)"
         }
         
-        GRPCWrapper.shared.runner.run(addressAndPort: "\(request.ip):\(request.port)", delegate: self.delegate, handler: { ip, port in
+        GRPCWrapper.shared.runClient(addressAndPort: "\(request.ip):\(request.port)", delegate: self.delegate, handler: { ip, port in
             DispatchQueue.main.async {
                 self.delegate.youArePlayingAt("bottom")
                 self.delegate.didStart()
@@ -40,14 +44,16 @@ class GameServerProvider: GameProvider {
     
     func sendMessage(request: ChatMessage, context: StatusOnlyCallContext) -> EventLoopFuture<ChatMessage> {
         
-        print("sendMessage Request: \(request.author): \(request.content)")
+        print("sendMessage Request has been received: \(request.author): \(request.content)")
         
-        let message = ChatMessage.with {
-            $0.author = "Robin"
-            $0.content = "Hello"
+        receiveMessage(request.author, request.content, delegate)
+        
+        let replyMessage = ChatMessage.with {
+            $0.author = request.author
+            $0.content = request.content
         }
         
-        return context.eventLoop.makeSucceededFuture(message)
+        return context.eventLoop.makeSucceededFuture(replyMessage)
     }
 
 }

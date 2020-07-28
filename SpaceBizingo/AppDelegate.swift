@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let gameDelegate = application.windows.first { $0.rootViewController is GameViewController }!.rootViewController as! GameDelegate
         
         //Opening Server
-        GRPCWrapper.shared.run(delegate: gameDelegate) { (number) in }
+        GRPCWrapper.shared.runServer(delegate: gameDelegate) { (number) in }
         
         return true
     }
