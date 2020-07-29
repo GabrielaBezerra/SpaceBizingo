@@ -68,6 +68,8 @@
 		06AD6D7124CB904A00430ED0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF79323E2705C00CD2013 /* Assets.xcassets */; };
 		06AD6D7224CB904A00430ED0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF79523E2705C00CD2013 /* LaunchScreen.storyboard */; };
 		06AD6D7324CB904A00430ED0 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78A23E2705A00CD2013 /* Actions.sks */; };
+		06B364BE24D1C0B10074444D /* IPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B364BD24D1C0B10074444D /* IPManager.swift */; };
+		06B364BF24D1C12F0074444D /* IPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B364BD24D1C0B10074444D /* IPManager.swift */; };
 		06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78623E2705A00CD2013 /* AppDelegate.swift */; };
 		06EFF78923E2705A00CD2013 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78823E2705A00CD2013 /* GameScene.sks */; };
 		06EFF78B23E2705A00CD2013 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78A23E2705A00CD2013 /* Actions.sks */; };
@@ -120,6 +122,7 @@
 		06AD6D3D24CB85BA00430ED0 /* GameServerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServerProvider.swift; sourceTree = "<group>"; };
 		06AD6D7724CB904A00430ED0 /* GreenBizingoBottom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenBizingoBottom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06AD6D7824CB904A00430ED0 /* SpaceBizingoTop copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SpaceBizingoTop copy-Info.plist"; path = "/Users/gabi/Study/IFCE Projects/PPD/SpaceBizingo/SpaceBizingoTop copy-Info.plist"; sourceTree = "<absolute>"; };
+		06B364BD24D1C0B10074444D /* IPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPManager.swift; sourceTree = "<group>"; };
 		06EFF78323E2705A00CD2013 /* GreenBizingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenBizingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06EFF78623E2705A00CD2013 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06EFF78823E2705A00CD2013 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -205,6 +208,7 @@
 				0638282623F4D9C600012127 /* TriangleStateDelegate.swift */,
 				0638282823F4E28E00012127 /* BoardDelegate.swift */,
 				0638282A23FA27E700012127 /* Extensions.swift */,
+				06B364BD24D1C0B10074444D /* IPManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -558,6 +562,7 @@
 				06AD6D5F24CB904A00430ED0 /* AppDelegate.swift in Sources */,
 				06AD6D6024CB904A00430ED0 /* BoardDelegate.swift in Sources */,
 				06AD6D6124CB904A00430ED0 /* TriangleStateDelegate.swift in Sources */,
+				06B364BF24D1C12F0074444D /* IPManager.swift in Sources */,
 				06AD6D6224CB904A00430ED0 /* GameDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,6 +593,7 @@
 				06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */,
 				0638282923F4E28E00012127 /* BoardDelegate.swift in Sources */,
 				0638282723F4D9C600012127 /* TriangleStateDelegate.swift in Sources */,
+				06B364BE24D1C0B10074444D /* IPManager.swift in Sources */,
 				06EFF7C623E76D9D00CD2013 /* GameDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
