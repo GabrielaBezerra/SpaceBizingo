@@ -82,9 +82,6 @@ class GameViewController: UIViewController {
         return alert
     }()
     
-    //MARK: - Socket Service Instatiation
-    let socketService: NetworkLayer = NetworkLayer()
-    
     //MARK: - GameState
     var state: GameState! = .awaitingConnection {
         didSet {
@@ -109,7 +106,6 @@ class GameViewController: UIViewController {
     @IBAction func sendAction(_ sender: UIButton) {
         if playerIsConnected() {
             if let content = self.textField.text, content.replacingOccurrences(of: " ", with: "") != "" {
-                //socketService.sendMessage(author: socketService.name!, content: content)
                 GRPCWrapper.shared.sendMessage(author: gameScene.player.rawValue.capitalized, content: content) { (replyAuthor, replyContent) in
                     if let replyAuthor = replyAuthor, let replyContent = replyContent {
                             self.receivedMessage(replyAuthor, msg: replyContent)
@@ -129,7 +125,10 @@ class GameViewController: UIViewController {
             let endTurnAction = UIAlertAction(title: "End Turn", style: .default, handler: { (alert) in
                 //endTurn handler
                 if self.gameScene.board.hasMoved {
-                    self.socketService.move(from: self.gameScene.board.previousPos!, to: self.gameScene.board.newPos!)
+                    GRPCWrapper.shared.endTurnAndMove(author: self.gameScene.player.rawValue.lowercased(), from: self.gameScene.board.previousPos!, to: self.gameScene.board.newPos!) { nextTurnName in
+                        self.playerDidMove(self.gameScene.player.rawValue, from: self.gameScene.board.previousPos!, to: self.gameScene.board.newPos!)
+                        self.newTurn(nextTurnName!)
+                    }
                     return
                 } else {
                     let alert = UIAlertController(title: "Cannot skip move!", message: "", preferredStyle: .alert)
@@ -194,8 +193,6 @@ class GameViewController: UIViewController {
         
         self.textField.delegate = self
         
-        socketService.delegate = self
-        
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
         if let scene = GKScene(fileNamed: "GameScene") {
@@ -255,9 +252,10 @@ class GameViewController: UIViewController {
     
     //MARK: - Restart
     func restart() {
-        socketService.restart()
+        GRPCWrapper.player = .disconnected
         viewDidLoad()
         viewDidAppear(true)
+        self.playerNameLabel.text = "Team"
         self.chatTextView.text = "\n"
     }
 }
@@ -296,36 +294,43 @@ extension GameViewController: GameDelegate {
     }
     
     func newTurn(_ name: String) {
-        
-        self.gameScene.board.verifyDeadPieces()
-        
-        self.gameScene.board.hasMoved = false
-        self.gameScene.board.newPos = nil
-        self.gameScene.board.previousPos = nil
-        
-        if name == gameScene.player.rawValue {
-            state = .yourTurn
-        } else {
-            state = .waiting
+        DispatchQueue.main.async {
+            self.gameScene.board.verifyDeadPieces()
+            
+            self.gameScene.board.hasMoved = false
+            self.gameScene.board.newPos = nil
+            self.gameScene.board.previousPos = nil
+            
+            if name == self.gameScene.player.rawValue {
+                self.state = .yourTurn
+            } else {
+                self.state = .waiting
+            }
         }
     }
     
     func playerDidMove(_ name: String, from originIndex: Index, to newIndex: Index) {
-        gameScene.board.movePiece(from: originIndex, to: newIndex)
+        DispatchQueue.main.async {
+            self.gameScene.board.movePiece(from: originIndex, to: newIndex)
+        }
     }
     
     func didWin() {
-        let alert = UIAlertController(title: "You Win", message: "", preferredStyle: .alert)
-        let exit = UIAlertAction(title: "Play Again", style: .default, handler: { _ in self.restart() })
-        alert.addAction(exit)
-        self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "You Win", message: "", preferredStyle: .alert)
+            let exit = UIAlertAction(title: "Play Again", style: .default, handler: { _ in self.restart() })
+            alert.addAction(exit)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func didLose() {
-        let alert = UIAlertController(title: "You Lose", message: "", preferredStyle: .alert)
-        let exit = UIAlertAction(title: "Play Again", style: .default, handler: { _ in self.restart() })
-        alert.addAction(exit)
-        self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "You Lose", message: "", preferredStyle: .alert)
+            let exit = UIAlertAction(title: "Play Again", style: .default, handler: { _ in self.restart() })
+            alert.addAction(exit)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func receivedMessage(_ name: String, msg: String) {
@@ -346,6 +351,7 @@ extension GameViewController: GameDelegate {
     
     func youArePlayingAt(_ team: String) {
         self.gameScene.player = Player(rawValue: team) ?? .disconnected
+        GRPCWrapper.player = Player(rawValue: team) ?? .disconnected
         
         print("👾 You are player \(self.gameScene.player.rawValue)")
         
@@ -358,7 +364,14 @@ extension GameViewController: GameDelegate {
 extension GameViewController: BoardDelegate {
     
     func gameOver(winner: Player) {
-        socketService.gameOver(winner: winner)
+        GRPCWrapper.shared.gameOver(winner: winner.rawValue.lowercased()) { winner in
+            guard let winner = winner else { print("OOooops no winner"); return }
+            if self.gameScene.player.rawValue.lowercased() == winner.lowercased() {
+                didWin()
+            } else {
+                didLose()
+            }
+        }
     }
     
 }

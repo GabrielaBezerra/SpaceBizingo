@@ -4,13 +4,16 @@
 PROTO_FILE_PATH=$1 ;
 
 # proto imports path
+#PROTO_PATH=$2 ;
 PROTO_PATH=$2 ;
 
 # grpc and pb swift out path to folder
-OUT_PATH_TO_FOLDER=$3 ;
+#OUT_PATH_TO_FOLDER=$3 ;
+OUT_PATH_TO_FOLDER=$2 ;
 
 # plugin path to folder
-PLUGINS_PATH_TO_FOLDER=$4 ;
+#PLUGINS_PATH_TO_FOLDER=$4 ;
+PLUGINS_PATH_TO_FOLDER=$3 ;
 
 echo -e "usage: ./generate-grpc-swift-from-proto <.proto file path> <.proto files folder path> <.grpc.swift and .pb.swift destiny folder path> <plugins folder path>\n";
 

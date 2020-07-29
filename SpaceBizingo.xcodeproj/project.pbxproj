@@ -52,7 +52,7 @@
 		06AD6D5F24CB904A00430ED0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78623E2705A00CD2013 /* AppDelegate.swift */; };
 		06AD6D6024CB904A00430ED0 /* BoardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282823F4E28E00012127 /* BoardDelegate.swift */; };
 		06AD6D6124CB904A00430ED0 /* TriangleStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282623F4D9C600012127 /* TriangleStateDelegate.swift */; };
-		06AD6D6224CB904A00430ED0 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* NetworkLayer.swift */; };
+		06AD6D6224CB904A00430ED0 /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* GameDelegate.swift */; };
 		06AD6D6424CB904A00430ED0 /* NIOFoundationCompat in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4424CB904A00430ED0 /* NIOFoundationCompat */; };
 		06AD6D6524CB904A00430ED0 /* NIO in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4824CB904A00430ED0 /* NIO */; };
 		06AD6D6624CB904A00430ED0 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 06AD6D4924CB904A00430ED0 /* GRPC */; };
@@ -83,7 +83,7 @@
 		06EFF7C023E4B98D00CD2013 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BF23E4B98D00CD2013 /* Constants.swift */; };
 		06EFF7C223E75A6C00CD2013 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C123E75A6C00CD2013 /* Piece.swift */; };
 		06EFF7C423E76D9600CD2013 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C323E76D9600CD2013 /* Chat.swift */; };
-		06EFF7C623E76D9D00CD2013 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* NetworkLayer.swift */; };
+		06EFF7C623E76D9D00CD2013 /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* GameDelegate.swift */; };
 		06EFF7CB23E76E4500CD2013 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7CA23E76E4500CD2013 /* Message.swift */; };
 /* End PBXBuildFile section */
 
@@ -141,7 +141,7 @@
 		06EFF7BF23E4B98D00CD2013 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		06EFF7C123E75A6C00CD2013 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		06EFF7C323E76D9600CD2013 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
-		06EFF7C523E76D9D00CD2013 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
+		06EFF7C523E76D9D00CD2013 /* GameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDelegate.swift; sourceTree = "<group>"; };
 		06EFF7CA23E76E4500CD2013 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,6 +200,7 @@
 		0638282523F4D9A100012127 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				06EFF7C523E76D9D00CD2013 /* GameDelegate.swift */,
 				0638282323F4D99500012127 /* PieceDelegate.swift */,
 				0638282623F4D9C600012127 /* TriangleStateDelegate.swift */,
 				0638282823F4E28E00012127 /* BoardDelegate.swift */,
@@ -280,7 +281,6 @@
 				06EFF79823E2705C00CD2013 /* Info.plist */,
 				06EFF78623E2705A00CD2013 /* AppDelegate.swift */,
 				0638282523F4D9A100012127 /* Utils */,
-				06EFF7C923E76DE200CD2013 /* Service */,
 				06AD6D1D24CB038400430ED0 /* gRPC */,
 				0663A90723E31E55007805C4 /* Model */,
 				0663A90823E31E74007805C4 /* View */,
@@ -322,14 +322,6 @@
 				06EFF78C23E2705A00CD2013 /* GameScene.swift */,
 			);
 			path = Scene;
-			sourceTree = "<group>";
-		};
-		06EFF7C923E76DE200CD2013 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				06EFF7C523E76D9D00CD2013 /* NetworkLayer.swift */,
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		06EFF7CC23E76E4B00CD2013 /* Chat */ = {
@@ -566,7 +558,7 @@
 				06AD6D5F24CB904A00430ED0 /* AppDelegate.swift in Sources */,
 				06AD6D6024CB904A00430ED0 /* BoardDelegate.swift in Sources */,
 				06AD6D6124CB904A00430ED0 /* TriangleStateDelegate.swift in Sources */,
-				06AD6D6224CB904A00430ED0 /* NetworkLayer.swift in Sources */,
+				06AD6D6224CB904A00430ED0 /* GameDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +588,7 @@
 				06EFF78723E2705A00CD2013 /* AppDelegate.swift in Sources */,
 				0638282923F4E28E00012127 /* BoardDelegate.swift in Sources */,
 				0638282723F4D9C600012127 /* TriangleStateDelegate.swift in Sources */,
-				06EFF7C623E76D9D00CD2013 /* NetworkLayer.swift in Sources */,
+				06EFF7C623E76D9D00CD2013 /* GameDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

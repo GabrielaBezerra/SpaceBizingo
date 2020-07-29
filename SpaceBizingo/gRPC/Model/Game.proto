@@ -5,8 +5,36 @@ service Game {
     
     rpc ConnectTo(ConnectionRequest) returns (ConnectionResult) {}
     rpc SendMessage(ChatMessage) returns (ChatMessage) {}
+    rpc Move(MoveRequest) returns (NextTurn) {}
+    rpc GameOver(WinnerRequest) returns (GameFinalResult) {}
     
 };
+
+message WinnerRequest {
+    string name = 1;
+}
+
+message GameFinalResult {
+    string winner = 1;
+    string loser = 2;
+}
+
+message MoveRequest {
+    
+    string author = 1;
+    IndexRequest originIndex = 2;
+    IndexRequest newIndex = 3;
+    
+    message IndexRequest {
+        int32 row = 4;
+        int32 column = 5;
+    }
+    
+}
+
+message NextTurn {
+    string name = 1;
+}
 
 message ConnectionRequest {
     string ip = 1;

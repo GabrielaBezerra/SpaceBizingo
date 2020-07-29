@@ -31,6 +31,8 @@ import SwiftProtobuf
 public protocol GameClientProtocol {
   func connectTo(_ request: ConnectionRequest, callOptions: CallOptions?) -> UnaryCall<ConnectionRequest, ConnectionResult>
   func sendMessage(_ request: ChatMessage, callOptions: CallOptions?) -> UnaryCall<ChatMessage, ChatMessage>
+  func move(_ request: MoveRequest, callOptions: CallOptions?) -> UnaryCall<MoveRequest, NextTurn>
+  func gameOver(_ request: WinnerRequest, callOptions: CallOptions?) -> UnaryCall<WinnerRequest, GameFinalResult>
 }
 
 public final class GameClient: GRPCClient, GameClientProtocol {
@@ -71,12 +73,38 @@ public final class GameClient: GRPCClient, GameClientProtocol {
                               callOptions: callOptions ?? self.defaultCallOptions)
   }
 
+  /// Unary call to Move
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to Move.
+  ///   - callOptions: Call options; `self.defaultCallOptions` is used if `nil`.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func move(_ request: MoveRequest, callOptions: CallOptions? = nil) -> UnaryCall<MoveRequest, NextTurn> {
+    return self.makeUnaryCall(path: "/Game/Move",
+                              request: request,
+                              callOptions: callOptions ?? self.defaultCallOptions)
+  }
+
+  /// Unary call to GameOver
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GameOver.
+  ///   - callOptions: Call options; `self.defaultCallOptions` is used if `nil`.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func gameOver(_ request: WinnerRequest, callOptions: CallOptions? = nil) -> UnaryCall<WinnerRequest, GameFinalResult> {
+    return self.makeUnaryCall(path: "/Game/GameOver",
+                              request: request,
+                              callOptions: callOptions ?? self.defaultCallOptions)
+  }
+
 }
 
 /// To build a server, implement a class that conforms to this protocol.
 public protocol GameProvider: CallHandlerProvider {
   func connectTo(request: ConnectionRequest, context: StatusOnlyCallContext) -> EventLoopFuture<ConnectionResult>
   func sendMessage(request: ChatMessage, context: StatusOnlyCallContext) -> EventLoopFuture<ChatMessage>
+  func move(request: MoveRequest, context: StatusOnlyCallContext) -> EventLoopFuture<NextTurn>
+  func gameOver(request: WinnerRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GameFinalResult>
 }
 
 extension GameProvider {
@@ -100,6 +128,20 @@ extension GameProvider {
         }
       }
 
+    case "Move":
+      return UnaryCallHandler(callHandlerContext: callHandlerContext) { context in
+        return { request in
+          self.move(request: request, context: context)
+        }
+      }
+
+    case "GameOver":
+      return UnaryCallHandler(callHandlerContext: callHandlerContext) { context in
+        return { request in
+          self.gameOver(request: request, context: context)
+        }
+      }
+
     default: return nil
     }
   }
@@ -107,6 +149,10 @@ extension GameProvider {
 
 
 // Provides conformance to `GRPCPayload`
+extension WinnerRequest: GRPCProtobufPayload {}
+extension GameFinalResult: GRPCProtobufPayload {}
+extension MoveRequest: GRPCProtobufPayload {}
+extension NextTurn: GRPCProtobufPayload {}
 extension ConnectionRequest: GRPCProtobufPayload {}
 extension ConnectionResult: GRPCProtobufPayload {}
 extension ChatMessage: GRPCProtobufPayload {}
