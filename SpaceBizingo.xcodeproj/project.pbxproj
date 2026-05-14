@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,6 +31,28 @@
 		06EFF7C623E76D9D00CD2013 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* SocketService.swift */; };
 		06EFF7CB23E76E4500CD2013 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7CA23E76E4500CD2013 /* Message.swift */; };
 		092920D6DB7289CA301084AC /* Pods_SpaceBizingo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33282BD45B5502860EC2D8A4 /* Pods_SpaceBizingo.framework */; };
+		431025B32FB62B1300FEFD3B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78C23E2705A00CD2013 /* GameScene.swift */; };
+		431025B42FB62B1300FEFD3B /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90523E30478007805C4 /* Index.swift */; };
+		431025B52FB62B1300FEFD3B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78E23E2705A00CD2013 /* GameViewController.swift */; };
+		431025B62FB62B1300FEFD3B /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C323E76D9600CD2013 /* Chat.swift */; };
+		431025B72FB62B1300FEFD3B /* TriangleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BC23E2A3AF00CD2013 /* TriangleNode.swift */; };
+		431025B82FB62B1300FEFD3B /* TriangleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663A90323E30456007805C4 /* TriangleState.swift */; };
+		431025B92FB62B1300FEFD3B /* PieceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282323F4D99500012127 /* PieceDelegate.swift */; };
+		431025BA2FB62B1300FEFD3B /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C123E75A6C00CD2013 /* Piece.swift */; };
+		431025BB2FB62B1300FEFD3B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BF23E4B98D00CD2013 /* Constants.swift */; };
+		431025BC2FB62B1300FEFD3B /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7BA23E2A3A400CD2013 /* Board.swift */; };
+		431025BD2FB62B1300FEFD3B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7CA23E76E4500CD2013 /* Message.swift */; };
+		431025BE2FB62B1300FEFD3B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282A23FA27E700012127 /* Extensions.swift */; };
+		431025BF2FB62B1300FEFD3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF78623E2705A00CD2013 /* AppDelegate.swift */; };
+		431025C02FB62B1300FEFD3B /* BoardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282823F4E28E00012127 /* BoardDelegate.swift */; };
+		431025C12FB62B1300FEFD3B /* TriangleStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0638282623F4D9C600012127 /* TriangleStateDelegate.swift */; };
+		431025C22FB62B1300FEFD3B /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EFF7C523E76D9D00CD2013 /* SocketService.swift */; };
+		431025C42FB62B1300FEFD3B /* Pods_SpaceBizingo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33282BD45B5502860EC2D8A4 /* Pods_SpaceBizingo.framework */; };
+		431025C62FB62B1300FEFD3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF79023E2705A00CD2013 /* Main.storyboard */; };
+		431025C72FB62B1300FEFD3B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78823E2705A00CD2013 /* GameScene.sks */; };
+		431025C82FB62B1300FEFD3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF79323E2705C00CD2013 /* Assets.xcassets */; };
+		431025C92FB62B1300FEFD3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF79523E2705C00CD2013 /* LaunchScreen.storyboard */; };
+		431025CA2FB62B1300FEFD3B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06EFF78A23E2705A00CD2013 /* Actions.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +104,8 @@
 		06EFF7CA23E76E4500CD2013 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		0DC7A1A18CE2640D06BC4CC7 /* Pods-SpaceBizingo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceBizingo.release.xcconfig"; path = "Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo.release.xcconfig"; sourceTree = "<group>"; };
 		33282BD45B5502860EC2D8A4 /* Pods_SpaceBizingo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceBizingo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		431025CF2FB62B1400FEFD3B /* SpaceBizingo copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpaceBizingo copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		431025D02FB62B1400FEFD3B /* SpaceBizingo copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SpaceBizingo copy-Info.plist"; path = "/Users/sharkberry/Projects/swift/SpaceBizingo/SpaceBizingo copy-Info.plist"; sourceTree = "<absolute>"; };
 		934ECA6C6EA7A8BF09894CFD /* Pods-SpaceBizingo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceBizingo.debug.xcconfig"; path = "Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +129,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		431025C32FB62B1300FEFD3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				431025C42FB62B1300FEFD3B /* Pods_SpaceBizingo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +185,7 @@
 				06EFF78423E2705A00CD2013 /* Products */,
 				A326A3F8ADC6AF131FF77C98 /* Pods */,
 				ECC569D45AA67C546B80CA98 /* Frameworks */,
+				431025D02FB62B1400FEFD3B /* SpaceBizingo copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,6 +195,7 @@
 				06EFF78323E2705A00CD2013 /* GreenBizingo.app */,
 				06EFF79D23E2705D00CD2013 /* SpaceBizingoTests.xctest */,
 				06EFF7A823E2705D00CD2013 /* SpaceBizingoUITests.xctest */,
+				431025CF2FB62B1400FEFD3B /* SpaceBizingo copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -319,6 +353,25 @@
 			productReference = 06EFF7A823E2705D00CD2013 /* SpaceBizingoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		431025B02FB62B1300FEFD3B /* SpaceBizingo copy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 431025CC2FB62B1300FEFD3B /* Build configuration list for PBXNativeTarget "SpaceBizingo copy" */;
+			buildPhases = (
+				431025B12FB62B1300FEFD3B /* [CP] Check Pods Manifest.lock */,
+				431025B22FB62B1300FEFD3B /* Sources */,
+				431025C32FB62B1300FEFD3B /* Frameworks */,
+				431025C52FB62B1300FEFD3B /* Resources */,
+				431025CB2FB62B1300FEFD3B /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SpaceBizingo copy";
+			productName = SpaceBizingo;
+			productReference = 431025CF2FB62B1400FEFD3B /* SpaceBizingo copy.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -356,6 +409,7 @@
 			projectRoot = "";
 			targets = (
 				06EFF78223E2705A00CD2013 /* SpaceBizingo */,
+				431025B02FB62B1300FEFD3B /* SpaceBizingo copy */,
 				06EFF79C23E2705D00CD2013 /* SpaceBizingoTests */,
 				06EFF7A723E2705D00CD2013 /* SpaceBizingoUITests */,
 			);
@@ -389,6 +443,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		431025C52FB62B1300FEFD3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				431025C62FB62B1300FEFD3B /* Main.storyboard in Resources */,
+				431025C72FB62B1300FEFD3B /* GameScene.sks in Resources */,
+				431025C82FB62B1300FEFD3B /* Assets.xcassets in Resources */,
+				431025C92FB62B1300FEFD3B /* LaunchScreen.storyboard in Resources */,
+				431025CA2FB62B1300FEFD3B /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -400,9 +466,56 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		431025B12FB62B1300FEFD3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SpaceBizingo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		431025CB2FB62B1300FEFD3B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpaceBizingo/Pods-SpaceBizingo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -470,6 +583,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				06EFF7AD23E2705D00CD2013 /* SpaceBizingoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		431025B22FB62B1300FEFD3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				431025B32FB62B1300FEFD3B /* GameScene.swift in Sources */,
+				431025B42FB62B1300FEFD3B /* Index.swift in Sources */,
+				431025B52FB62B1300FEFD3B /* GameViewController.swift in Sources */,
+				431025B62FB62B1300FEFD3B /* Chat.swift in Sources */,
+				431025B72FB62B1300FEFD3B /* TriangleNode.swift in Sources */,
+				431025B82FB62B1300FEFD3B /* TriangleState.swift in Sources */,
+				431025B92FB62B1300FEFD3B /* PieceDelegate.swift in Sources */,
+				431025BA2FB62B1300FEFD3B /* Piece.swift in Sources */,
+				431025BB2FB62B1300FEFD3B /* Constants.swift in Sources */,
+				431025BC2FB62B1300FEFD3B /* Board.swift in Sources */,
+				431025BD2FB62B1300FEFD3B /* Message.swift in Sources */,
+				431025BE2FB62B1300FEFD3B /* Extensions.swift in Sources */,
+				431025BF2FB62B1300FEFD3B /* AppDelegate.swift in Sources */,
+				431025C02FB62B1300FEFD3B /* BoardDelegate.swift in Sources */,
+				431025C12FB62B1300FEFD3B /* TriangleStateDelegate.swift in Sources */,
+				431025C22FB62B1300FEFD3B /* SocketService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +766,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 526YR6WHWC;
 				INFOPLIST_FILE = SpaceBizingo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -649,6 +786,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 526YR6WHWC;
 				INFOPLIST_FILE = SpaceBizingo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -744,6 +882,46 @@
 			};
 			name = Release;
 		};
+		431025CD2FB62B1300FEFD3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 934ECA6C6EA7A8BF09894CFD /* Pods-SpaceBizingo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 526YR6WHWC;
+				INFOPLIST_FILE = "SpaceBizingo copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharkberry.SpaceBizingo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		431025CE2FB62B1300FEFD3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DC7A1A18CE2640D06BC4CC7 /* Pods-SpaceBizingo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 526YR6WHWC;
+				INFOPLIST_FILE = "SpaceBizingo copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharkberry.SpaceBizingo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -779,6 +957,15 @@
 			buildConfigurations = (
 				06EFF7B823E2705D00CD2013 /* Debug */,
 				06EFF7B923E2705D00CD2013 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		431025CC2FB62B1300FEFD3B /* Build configuration list for PBXNativeTarget "SpaceBizingo copy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				431025CD2FB62B1300FEFD3B /* Debug */,
+				431025CE2FB62B1300FEFD3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
